@@ -1,0 +1,502 @@
+{
+  "40 alleged drunken Santas accused of running amok": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that Santarchy in Auckland is a protest against the commercialization of Christmas? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "New Zealand dollar hits new high versus the United States dollar": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the NZD reached or exceeded US$0.80 at any time before the 11:40 a.m. update? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "AFCON 2013: Hosts South Africa draw 0-0 with Cape Verde Islands": {
+    "general_expected": "No",
+    "complex_question": "Did Bongani Khumalo's injury-time header occur after the penalty appeal rejected by the referee? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Lewis Hamilton wins 2008 Monaco Grand Prix": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that Kimi Räikkönen overtook Rubens Barrichello, Kazuki Nakajima and Nelson Piquet Jr. on lap 13 under a waived yellow flag condition? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "US military investigation clears soldiers in shooting of Nicola Calipari": {
+    "general_expected": "No",
+    "complex_question": "Did the Italian government reject the investigation's findings before Berlusconi apologised for 'an unfortunate leak' that suggested the investigation was completed? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Indiana Department of Homeland Security violates Wikipedia copyright": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Indiana Department of Homeland Security violates Wikipedia copyright' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "China responds to US plan for import quotas": {
+    "general_expected": "No",
+    "complex_question": "According to the article, did the U.S. administration already determine that China is causing market disruption in the U.S. textile market? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Canadian mouse study shows hormone associated with pregnancy may reverse MS": {
+    "general_expected": "No",
+    "complex_question": "Did the article demonstrate that prolactin directly reverses MS progression in humans? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "National Hockey League news: March 5, 2008": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'National Hockey League news: March 5, 2008' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Eric Rudolph pleads guilty to avoid death sentence": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Eric Rudolph pleads guilty to avoid death sentence' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "China and Europe face new avian flu outbreaks": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that Russia is waiting for confirmation that the H5N1 strain killed several hundred ducks near Moscow, rather than asserting that it did? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "New research shows over 400 languages originated in Turkey": {
+    "general_expected": "No",
+    "complex_question": "Does the article present the Anatolian origin timeline (beginning 8,000 to 9,500 years ago) as the established consensus rather than as a claim by a single paper? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Greek actor Sotiris Moustakas dies at 67": {
+    "general_expected": "No",
+    "complex_question": "Based on the article, can one be certain that Sotiris Moustakas died in the afternoon of June 4, 2007, given it states he 'died suddenly today' and 'passed away, early in the morning'? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Lyon lose at home; drop out of Champions League": {
+    "general_expected": "Yes",
+    "complex_question": "Did Francesco Totti score Roma's second goal in the match? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Australian Labor Party reelected to Queensland government: Australian Broadcasting Corporation": {
+    "general_expected": "No",
+    "complex_question": "Based on the article, will Anna Bligh become the first female elected premier in Australian history and the third female to be appointed premier if the ALP wins, i.e., did the article claim both outcomes? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "EBay may acquire VoIP firm Skype": {
+    "general_expected": "No",
+    "complex_question": "Did Rupert Murdoch's talks with Skype occur before eBay's talks to acquire Skype according to the article? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Ruddock hints at Australia Card": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that the British government is considering fingerprint and iris-scan identity cards in the same week that Australia discussed introducing an Australia Card? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "'Crown Fire' forces residents in Southern California to evacuate homes": {
+    "general_expected": "No",
+    "complex_question": "Did the Briggs Fire begin before the Crown Fire, according to the article? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Thai-Cambodian generals in talks after border clash kills two": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article present the claim that ten Thai soldiers were captured as confirmed by both sides? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Iran parliament to review compliance with IAEA standards": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Iran actually ended its nuclear inspections within 60 days after the UN Security Council sanctions were imposed? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Boat in DR Congo capsizes, 80 feared dead": {
+    "general_expected": "No",
+    "complex_question": "Within the article, is the figure '80' presented as a confirmed death toll by authorities, given that it is described as 'feared dead' and that some reports mention 'twenty people were already confirmed dead'? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Defending Paralympic table tennis gold medalist Ying Zhou defeats Slovene Andreja Dolinar in group play": {
+    "general_expected": "No",
+    "complex_question": "Did the article specify that Andreja Dolinar's next scheduled match would be against South Korea in the Women's Team Cl 4–5 Quarterfinal 3, which would occur after the article's report date? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "12-year-old girl dies after collapsing in school in Northamptonshire, England": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in '12-year-old girl dies after collapsing in school in Northamptonshire, England' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "US to host Middle East summit on November 27": {
+    "general_expected": "No",
+    "complex_question": "Did President George W. Bush deliver remarks at the dinner described as taking place the preceding evening in Washington, D.C., for the Annapolis conference on November 27? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Green Party wins major by-election in northern England city of Manchester": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Green Party wins major by-election in northern England city of Manchester' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "More US recalls: Fish pool toy rips fingernail off child, numerous toys with excessive lead": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'More US recalls: Fish pool toy rips fingernail off child, numerous toys with excessive lead' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "At least four dead and hundreds of homes destroyed after week of wildfires rage throughout Texas": {
+    "general_expected": "No",
+    "complex_question": "Did officials confirm on Tuesday that East Texas had become the center of wildfire activity in the state? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Iran will continue work on nuclear fuel cycle": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article state that Iran has already resumed its uranium enrichment programme as of July 28, 2005, despite European proposals? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Van Halen singer impersonated in Canadian medical scare": {
+    "general_expected": "No",
+    "complex_question": "Did the article verify that the man who identified himself as David Lee Roth actually sang 'Ice Cream Man' at Liquid Lounge, given that it later states Roth was performing with Van Halen in New York City on the evening of the incident? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "University defeat Maroochydore in round four of 2014 Sunshine Coast Rugby Union season": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'University defeat Maroochydore in round four of 2014 Sunshine Coast Rugby Union season' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Cyprus to charge five over 2005 plane crash that killed 121": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article state that the prosecutors had already charged five people and publicly stated the exact offenses, rather than merely announcing plans to charge? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Wikinews interviews Finnish 'Rock 'N' Troll' band Kivimetsän Druidi": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Wikinews interviews Finnish 'Rock 'N' Troll' band Kivimetsän Druidi' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Worldwide markets fall precipitously": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that as of 16:08 UTC the Dow Jones had a value of 9936.94 points, which was below the ten thousand mark, and that this represented a slight increase from its level earlier in the day? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Iran says its nuclear program is unchanged": {
+    "general_expected": "No",
+    "complex_question": "Did Iran's response letter explicitly address the six-week enrichment moratorium proposed by the world powers, according to the article? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "North, South Korea plan united team for 2008 Olympics": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article claim that the unified North-South Korean team had already competed as a single team in the 2006 Asian Games in Doha, Qatar? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Georgia withdraws from South Ossetia": {
+    "general_expected": "No",
+    "complex_question": "Did the article explicitly state that the state of war would end on August 24, 2008? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Arnold Schwarzenegger to visit Canada": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that Arnold Schwarzenegger's planned visit to Canada has already been scheduled before January 15, 2007? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Wikinews interviews winner of 55 Paralympic medals, Trischa Zorn": {
+    "general_expected": "No",
+    "complex_question": "Did Zorn's induction into the International Paralympic Hall of Fame occur after her last Paralympic competition in 2004? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Explosion in Russian nightclub kills at least 94": {
+    "general_expected": "No",
+    "complex_question": "Did the article definitively confirm that pyrotechnics caused the explosion and that it was not a terrorist attack? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Wikinews interviews Patricia Petersen, independent candidate for the electorate of Bundamba in the 2009 Queensland election": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Wikinews interviews Patricia Petersen, independent candidate for the electorate of Bundamba in the 2009 Queensland election' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "CIA \"rendition\" confirmed in Europe": {
+    "general_expected": "No",
+    "complex_question": "Did Marty's interim report definitively prove that the CIA operated secret detention centers in Europe? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Nightwish announce details of new album": {
+    "general_expected": "No",
+    "complex_question": "Did Spinefarm/Universal release Amaranth on August 24? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Innovator of synthesizers Robert Moog, dead at 71": {
+    "general_expected": "No",
+    "complex_question": "Did the article explicitly state the exact calendar date of Moog's death? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Michigan woman kidnapped in 1976 found alive in Arizona": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that, by the time of reporting, the mother and daughter had not yet made contact despite authorities informing the daughter that the mother was alive? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Australian election debate debacle": {
+    "general_expected": "No",
+    "complex_question": "As of July 17, 2010, did the article definitively confirm that the Three Leaders' Debate—featuring Gillard, Abbott, and Bob Brown—will take place on the first Sunday of the campaign? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "South African floods kill at least 300 people": {
+    "general_expected": "No",
+    "complex_question": "Did the article explicitly state that the death toll was exactly 306 people as of Friday, April 15, 2022? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "British mother paralyzed in stabbing communicates with police": {
+    "general_expected": "No",
+    "complex_question": "Based on the article's date (April 26, 2005) and the reference to the interview occurring 'yesterday' for around six hours, did Abigail Witchalls' extended interview take place on April 25, 2005? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "International ban on cluster bombs \"very close\" says British Prime Minister": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'International ban on cluster bombs \"very close\" says British Prime Minister' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Jordan Lloyd wins US Big Brother 11": {
+    "general_expected": "No",
+    "complex_question": "Did Jordan Lloyd win the grand prize before she won the final Head of Household competition on the finale night? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Adele and David Bowie each win five Grammys": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that David Bowie died before the release of the album Blackstar? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "13 coal miners trapped in West Virginia mine": {
+    "general_expected": "No",
+    "complex_question": "Did the article specify the exact time when rescue operations commenced? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Six aid groups suspend work in Chad after killing": {
+    "general_expected": "No",
+    "complex_question": "Did the article say that Laurent Maurice's kidnapping occurred after the six aid groups had suspended their work in Chad? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "8 dead following road collision in New Brunswick, Canada": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article explicitly state that the crash occurred on January 12, 2008? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "US government files lawsuit against BP Exploration in Alaska": {
+    "general_expected": "Yes",
+    "complex_question": "Did BPXA plead guilty before the civil lawsuit was filed by the EPA and PHMSA, as described in the article? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Fire burns at Barangaroo construction site, Sydney, Australia": {
+    "general_expected": "No",
+    "complex_question": "Did the article conclusively confirm that the welding accident in the basement caused the fire? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Texas police: 2-year old crushed by relative": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the boy was pronounced dead on Tuesday and that the relative's potential involvement was described as 'suspicious' by the Sheriff, while authorities were still awaiting an official cause of death? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Airlines fight new EU passenger compensation legislation": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the definition of 'extraordinary circumstances' definitely includes bad weather, security alerts or strikes? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "British singer Robbie Williams announces his return to boyband Take That": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Robbie Williams will definitely appear on stage with the rest of Take That in the future? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Study suggests 'sleeping sickness' parasite mutated to evade immune system defences": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Trypanosoma brucei gambiense's mutation, which changes its surface protein receptor to reduce TLF-1 uptake, is described as a recently evolved countermeasure? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "New Zealand man stopped at border because of unpaid fines": {
+    "general_expected": "No",
+    "complex_question": "Did the article report that the interception occurred before the Pay or Stay legislation was enacted? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Concorde crash trial begins": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Concorde crash trial begins' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Unrest spreads to Morocco; police violently break up demonstrations": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Unrest spreads to Morocco; police violently break up demonstrations' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Riots in Tonga": {
+    "general_expected": "No",
+    "complex_question": "Did the article report that Australian and New Zealand troops actually arrived in Tonga to quell the riots? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Garuda Indonesia increases flights, fleet; may buy rival": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the Airbus A330-200s would begin international service in July, which is before the year's end when the Jakarta–Kuala Lumpur flights are planned to increase from one to two per week? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "UK to get new nuclear power stations": {
+    "general_expected": "No",
+    "complex_question": "Does the article present the claim that 20% of energy will be produced from renewables by 2020 as a confirmed fact rather than a claimed projection? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Canon Inc. to buy the stake of Toshiba in their joint venture": {
+    "general_expected": "No",
+    "complex_question": "Did Canon announce that production of the new generation flat-panel televisions would begin before Canon buys Toshiba's stake in SED Inc.? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "BHP halts operations after mine death in Western Australia": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the cause of the Leinster nickel mine explosion was already known at the time of reporting? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Sinn Féin leaders believed to have left IRA Army Council": {
+    "general_expected": "No",
+    "complex_question": "According to the article, did Gerry Adams, Martin McGuinness and Martin Ferris resign from the Army Council of the Provisional Irish Republican Army within the past fortnight as a confirmed fact? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Paris Hilton released under house arrest": {
+    "general_expected": "No",
+    "complex_question": "Did the article definitively confirm that Paris Hilton's release from jail was due to a medically confirmed condition, rather than being part of a negotiated agreement to serve the remaining days under house arrest? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Car bomb kills 11 in Pakistan": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that a school bus was passing at the time of the detonation according to independent witnesses? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Al-Qaeda says bin Laden death will 'not be wasted'; Pentagon releases videos of terrorist leader in compound": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Al-Qaeda says bin Laden death will 'not be wasted'; Pentagon releases videos of terrorist leader in compound' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "John Constable painting location mystery solved after 195 years": {
+    "general_expected": "No",
+    "complex_question": "Did Martin Atkinson use an 1817 map of East Bergholt as a reference point and determine that the view Constable painted had changed not long after the painting was completed, thereby locating the original viewpoint? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Volunteers collaborate in reconstruction of Lolol, Chile": {
+    "general_expected": "No",
+    "complex_question": "Did the volunteers travel to Lolol after May 22, 2010? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Unions ballot to \"shut down the BBC\"": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article confirm that compulsory redundancies would occur at the BBC as part of the 4,000 job cuts? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "German trains halted by strike": {
+    "general_expected": "No",
+    "complex_question": "According to the article, did the court's authorization for the strike apply to all types of trains, including long-distance and intercity trains, ICE networks, and freight transports? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Irish Guardian journalist reported missing in Iraq": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that Rory Carroll's disappearance had been verified by authorities before it mentions the CPJ's call for his immediate release? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Man drowns in Texas lake after falling from boat": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Man drowns in Texas lake after falling from boat' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "TACA Airlines Flight 390 crashes in Honduras": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm the exact number of people aboard Flight 390 at the time of the crash? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Google launches free city wide Wi-Fi in Mountain View, California": {
+    "general_expected": "No",
+    "complex_question": "Does the article's claim that Google has 'no plans to offer a similar service nationwide' conflict with the statement that 'the network will eventually cover the entire city' within Mountain View? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Australia defeats Ireland 37-15 in rugby": {
+    "general_expected": "No",
+    "complex_question": "According to the article, was the match played on Sunday? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Puerto Rico Supreme Court removes Governor Pierluisi; Wanda Vázquez becomes governor": {
+    "general_expected": "No",
+    "complex_question": "Did the Supreme Court declare Pierluisi's oath unconstitutional on Wednesday, leading to Wanda Vázquez being sworn in as governor later that day? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Ex-ambassador comes fifth in election in UK Foreign Secretary's seat whilst trying to highlight alleged torture in Uzbekistan": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that Jack Straw personally authorised the policy of using information obtained under torture? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Trump criticizes media bias towards Obama, especially during UK state visit": {
+    "general_expected": "No",
+    "complex_question": "Did Trump leave open the possibility of running as an independent candidate despite announcing he would not seek the Republican nomination? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Apache pipeline fire - Varanus Island, Western Australia": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that throughput would be resumed within 24 hours after the rupture? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Pakistan wins Fortune Cup defeating West Indies by 3-0": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Pakistan wins Fortune Cup defeating West Indies by 3-0' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Authorities in Belgium raid Church of Scientology": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the raid occurred after nearly ten years of investigation and that the Church claims the police violated its fundamental rights? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Santorum neologism spreads to Romney": {
+    "general_expected": "No",
+    "complex_question": "Did the article explicitly state that SpreadingSantorum.com was created before SpreadingRomney.com? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "UK PM pledges aid for Myanmar": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article state that the UK pledge to provide food aid was made after rescue workers began to realize the damage? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "South African TV journalist mugged while preparing for live broadcast": {
+    "general_expected": "No",
+    "complex_question": "Did the mugging occur moments before Mvoko was due to start a live broadcast about Edgar Lungu's arrival in South Africa? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Successful launch of Space Shuttle Atlantis": {
+    "general_expected": "No",
+    "complex_question": "Did the article definitively confirm both that Atlantis reached orbit approximately 8 1/2 minutes after liftoff and that there was no serious damage caused by foam debris? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Final withdrawal of Australian troops from East Timor": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Final withdrawal of Australian troops from East Timor' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Belgian men's goalball team departs for Finland for World Championships": {
+    "general_expected": "No",
+    "complex_question": "Did Bruno Vanhove and Tom Vanhove depart for Espoo, Finland before the Belgian-hosted Parantee Paralympic Championships occurred? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Nineteen Spanish airports closed due to ash": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that the reopening time of 02:00 local time Sunday would happen after the 15:30 local time closure of the last four airports? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Pluto's moons named": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Charon was discovered after Hydra and Nix? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "UK shadow home secretary resigns over terror law": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that David Davis resigned after yesterday's vote in Parliament to allow detaining suspects for up to 42 days without charge? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "St. Paul Mayor's vehicle hit by drunk driver": {
+    "general_expected": "No",
+    "complex_question": "Did the article definitively confirm that the passenger accompanying Abbie Raymond was intoxicated at the time of the crash? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Afghan provincial governor killed in mosque bomb attack": {
+    "general_expected": "No",
+    "complex_question": "Did the article definitively establish that the attack was a suicide bombing? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "\"Anonymous\" plans to protest Church of Scientology on February 10": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Anonymous denies that they are composed solely of 'super hackers'? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Lufthansa pilots begin strike": {
+    "general_expected": "No",
+    "complex_question": "Did Lufthansa extend the four-day strike beyond its planned duration according to the article? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Scientology guilty of fraud rules French appeal court": {
+    "general_expected": "No",
+    "complex_question": "Did the Court of Cassation uphold the lower courts' 2009 fraud conviction of the Church of Scientology in France, as the article states, thereby affirming that the conviction was based on a former member's claims that she had been pressured to buy books, courses, and 'purification remedies'? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  }
+}

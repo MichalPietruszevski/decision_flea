@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wykres Pewności Bio-Cascade SLM V15.1</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .bar-hover:hover {
+      filter: brightness(1.2);
+      transform: scaleY(1.05);
+      transform-origin: bottom;
+    }
+  </style>
+</head>
+<body class="bg-transparent text-[var(--foreground)] antialiased p-3 sm:p-5">
+  <div class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-2xl p-5 shadow-lg max-w-4xl mx-auto space-y-6">
+    
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[var(--border)] pb-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            100% RECALL MILESTONE
+          </span>
+          <span class="text-xs text-[var(--muted-foreground)]">Weryfikacja na 50 newsach</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight mt-1 text-[var(--foreground)]">
+          Rozkład Pewności (Confidence Plot) - Bio-Cascade V15.1
+        </h2>
+        <p class="text-xs sm:text-sm text-[var(--muted-foreground)] mt-0.5">
+          Ewaluacja 50 rzeczywistych artykułów (25 Wikinews + 25 BBC News) w trybie <code>mode="boolean"</code>.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <div class="text-2xl font-extrabold text-emerald-500">100.0%</div>
+          <div class="text-xs text-[var(--muted-foreground)]">Dokładność (50/50)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+        <div class="text-xs text-[var(--muted-foreground)]">Średnia Pewność</div>
+        <div class="text-xl font-bold text-[var(--foreground)] mt-0.5">99.78%</div>
+        <div class="text-[11px] text-emerald-500 mt-0.5">Kalibracja optymalna</div>
+      </div>
+      <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+        <div class="text-xs text-[var(--muted-foreground)]">Mediana Pewności</div>
+        <div class="text-xl font-bold text-[var(--foreground)] mt-0.5">100.00%</div>
+        <div class="text-[11px] text-emerald-500 mt-0.5">35/50 ma pewność 100%</div>
+      </div>
+      <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+        <div class="text-xs text-[var(--muted-foreground)]">Pewność &ge; 90%</div>
+        <div class="text-xl font-bold text-[var(--foreground)] mt-0.5">100.0%</div>
+        <div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">Min: 93.35%</div>
+      </div>
+      <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+        <div class="text-xs text-[var(--muted-foreground)]">Rozkład Decyzji</div>
+        <div class="text-xl font-bold text-[var(--foreground)] mt-0.5">14 Yes / 36 No</div>
+        <div class="text-[11px] text-emerald-500 mt-0.5">FN = 0 (100% Recall)</div>
+      </div>
+    </div>
+
+    <!-- Interactive Confidence Bar Chart -->
+    <div class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-semibold text-[var(--foreground)] flex items-center gap-2">
+          <span>Wykres Słupkowy Pewności (Każdy z 50 Artykułów)</span>
+          <span class="text-xs font-normal text-[var(--muted-foreground)]">(Najedź kursorem na słupek, aby zobaczyć szczegóły)</span>
+        </h3>
+        <div class="flex items-center gap-3 text-xs">
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-emerald-500 inline-block"></span> Decyzja "Yes"</span>
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-sky-500 inline-block"></span> Decyzja "No"</span>
+        </div>
+      </div>
+
+      <!-- Chart Container -->
+      <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] overflow-x-auto">
+        <div class="relative h-44 flex items-end gap-1.5 min-w-[620px] pt-6 pb-2" id="chart-bars">
+          <!-- Bars generated via JS -->
+        </div>
+        <div class="flex justify-between text-[11px] text-[var(--muted-foreground)] mt-2 pt-2 border-t border-[var(--border)]">
+          <span>Sortowanie: Od najwyższej pewności (100%)</span>
+          <span>Do najniższej w zbiorze (93.35%)</span>
+        </div>
+      </div>
+
+      <!-- Active Details Box -->
+      <div id="tooltip-box" class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs transition-all duration-200">
+        <div class="font-medium text-[var(--foreground)]" id="t-title">Wskaż słupek powyżej, aby obejrzeć artykuł i pytanie.</div>
+        <div class="text-[var(--muted-foreground)] mt-1 flex flex-wrap gap-4" id="t-meta">
+          <span>Kliknij lub najedź myszą na dowolny z 50 słupków.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Histogram Distribution -->
+    <div class="space-y-2 pt-2">
+      <h3 class="text-sm font-semibold text-[var(--foreground)]">Rozkład Histogramowy (Przedziały Pewności)</h3>
+      <div class="space-y-1.5 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-24 text-[var(--muted-foreground)]">100.0%</span>
+          <div class="flex-1 bg-[var(--background)] h-5 rounded-md overflow-hidden p-0.5 border border-[var(--border)]">
+            <div class="bg-emerald-500 h-full rounded text-[10px] text-white font-semibold flex items-center justify-end pr-2" style="width: 70%;">35 artykułów (70%)</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-24 text-[var(--muted-foreground)]">99.0 - 99.9%</span>
+          <div class="flex-1 bg-[var(--background)] h-5 rounded-md overflow-hidden p-0.5 border border-[var(--border)]">
+            <div class="bg-emerald-500/80 h-full rounded text-[10px] text-white font-semibold flex items-center justify-end pr-2" style="width: 24%;">12 artykułów (24%)</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-24 text-[var(--muted-foreground)]">95.0 - 98.9%</span>
+          <div class="flex-1 bg-[var(--background)] h-5 rounded-md overflow-hidden p-0.5 border border-[var(--border)]">
+            <div class="bg-emerald-500/60 h-full rounded text-[10px] text-white font-semibold flex items-center justify-end pr-1.5" style="width: 8%;">2 (4%)</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-24 text-[var(--muted-foreground)]">90.0 - 94.9%</span>
+          <div class="flex-1 bg-[var(--background)] h-5 rounded-md overflow-hidden p-0.5 border border-[var(--border)]">
+            <div class="bg-amber-500 h-full rounded text-[10px] text-white font-semibold flex items-center justify-end pr-1.5" style="width: 5%;">1 (2%)</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-24 text-[var(--muted-foreground)]">&lt; 90.0%</span>
+          <div class="flex-1 bg-[var(--background)] h-5 rounded-md overflow-hidden p-0.5 border border-[var(--border)]">
+            <div class="text-[10px] text-[var(--muted-foreground)] pl-2">0 artykułów (0%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const data = [{"id": 1, "title": "40 alleged drunken Santas accused of running amok", "source": "wikinews", "question": "Did the article confirm that Santarchy in Auckland is a protest against the commercialization of Christmas? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -30.2677, "latency_ms": 76.9}, {"id": 2, "title": "New Zealand dollar hits new high versus the United States dollar", "source": "wikinews", "question": "Did the article state that the NZD reached or exceeded US$0.80 at any time before the 11:40 a.m. update? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -30.1467, "latency_ms": 68.77}, {"id": 7, "title": "China responds to US plan for import quotas", "source": "wikinews", "question": "According to the article, did the U.S. administration already determine that China is causing market disruption in the U.S. textile market? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -31.1452, "latency_ms": 91.81}, {"id": 8, "title": "Canadian mouse study shows hormone associated with pregnancy may reverse MS", "source": "wikinews", "question": "Did the article demonstrate that prolactin directly reverses MS progression in humans? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -29.8709, "latency_ms": 122.91}, {"id": 9, "title": "National Hockey League news: March 5, 2008", "source": "wikinews", "question": "Did the events described in 'National Hockey League news: March 5, 2008' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -37.884699999999995, "latency_ms": 260.01}, {"id": 10, "title": "Eric Rudolph pleads guilty to avoid death sentence", "source": "wikinews", "question": "Did the events described in 'Eric Rudolph pleads guilty to avoid death sentence' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -32.7051, "latency_ms": 33.53}, {"id": 12, "title": "New research shows over 400 languages originated in Turkey", "source": "wikinews", "question": "Does the article present the Anatolian origin timeline (beginning 8,000 to 9,500 years ago) as the established consensus rather than as a claim by a single paper? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -19.8408, "latency_ms": 46.14}, {"id": 13, "title": "Greek actor Sotiris Moustakas dies at 67", "source": "wikinews", "question": "Based on the article, can one be certain that Sotiris Moustakas died in the afternoon of June 4, 2007, given it states he 'died suddenly today' and 'passed away, early in the morning'? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -25.2984, "latency_ms": 57.87}, {"id": 14, "title": "Lyon lose at home; drop out of Champions League", "source": "wikinews", "question": "Did Francesco Totti score Roma's second goal in the match? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -13.3291, "latency_ms": 78.3}, {"id": 15, "title": "Australian Labor Party reelected to Queensland government: Australian Broadcasting Corporation", "source": "wikinews", "question": "Based on the article, will Anna Bligh become the first female elected premier in Australian history and the third female to be appointed premier if the ALP wins, i.e., did the article claim both outcomes? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 1.0, "p_yes": 1.0, "p_no": 0.0, "margin": 12.994, "latency_ms": 45.26}, {"id": 16, "title": "EBay may acquire VoIP firm Skype", "source": "wikinews", "question": "Did Rupert Murdoch's talks with Skype occur before eBay's talks to acquire Skype according to the article? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 1.0, "p_yes": 1.0, "p_no": 0.0, "margin": 10.1, "latency_ms": 42.44}, {"id": 17, "title": "Ruddock hints at Australia Card", "source": "wikinews", "question": "Did the article claim that the British government is considering fingerprint and iris-scan identity cards in the same week that Australia discussed introducing an Australia Card? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -15.723700000000001, "latency_ms": 183.61}, {"id": 18, "title": "'Crown Fire' forces residents in Southern California to evacuate homes", "source": "wikinews", "question": "Did the Briggs Fire begin before the Crown Fire, according to the article? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -26.4717, "latency_ms": 143.57}, {"id": 19, "title": "Thai-Cambodian generals in talks after border clash kills two", "source": "wikinews", "question": "Did the article present the claim that ten Thai soldiers were captured as confirmed by both sides? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -28.459500000000002, "latency_ms": 97.67}, {"id": 21, "title": "Boat in DR Congo capsizes, 80 feared dead", "source": "wikinews", "question": "Within the article, is the figure '80' presented as a confirmed death toll by authorities, given that it is described as 'feared dead' and that some reports mention 'twenty people were already confirmed dead'? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -27.83, "latency_ms": 37.71}, {"id": 22, "title": "More US recalls: Fish pool toy rips fingernail off child, numerous toys with excessive lead", "source": "wikinews", "question": "Did the events described in 'More US recalls: Fish pool toy rips fingernail off child, numerous toys with excessive lead' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -14.7531, "latency_ms": 252.21}, {"id": 23, "title": "12-year-old girl dies after collapsing in school in Northamptonshire, England", "source": "wikinews", "question": "Did the events described in '12-year-old girl dies after collapsing in school in Northamptonshire, England' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -33.9001, "latency_ms": 31.7}, {"id": 24, "title": "US to host Middle East summit on November 27", "source": "wikinews", "question": "Did President George W. Bush deliver remarks at the dinner described as taking place the preceding evening in Washington, D.C., for the Annapolis conference on November 27? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 1.0, "p_yes": 1.0, "p_no": 0.0, "margin": 16.6601, "latency_ms": 27.54}, {"id": 26, "title": "Violent clashes, looting and buildings ablaze in France as over 1,000 arrested after protests", "source": "bbc_news", "question": "Did the article state that in Paris the main march was largely peaceful in the afternoon but later some groups lit fires and torched vehicles, including at Place de la République? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 1.0, "p_yes": 1.0, "p_no": 0.0, "margin": 12.302399999999999, "latency_ms": 149.63}, {"id": 27, "title": "Trump waives several Russia sanctions as row with Zelensky intensifies", "source": "bbc_news", "question": "Did the executive order issued by Trump suspend all sanctions on Russia, according to the article? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -25.9152, "latency_ms": 174.99}, {"id": 28, "title": "European diplomats attacked by Israeli settlers in West Bank", "source": "bbc_news", "question": "Did the article state that the assault on the European diplomats occurred before the assault on Palestinians and Heidi Levine in the West Bank? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -31.308, "latency_ms": 108.38}, {"id": 30, "title": "At least 17 dead in crush at Hindu festival event in India", "source": "bbc_news", "question": "Did the article confirm that the seven-year-old girl was among the dead with independent verification? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -19.997999999999998, "latency_ms": 26.9}, {"id": 32, "title": "Teacher fought US school attacker before armed dad shot suspect 'multiple times'", "source": "bbc_news", "question": "Did the article explicitly state that the father confronted the suspect before the attacker killed the three victims? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -16.8467, "latency_ms": 215.2}, {"id": 33, "title": "Three men jailed for 158 years each for murdering Australian and US surfers in Mexico", "source": "bbc_news", "question": "Did the article report that the victims were killed in an apparent botched robbery on a secluded beach in Baja California in 2024, and that their bodies were found dumped down a well? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 1.0, "p_yes": 1.0, "p_no": 0.0, "margin": 23.861, "latency_ms": 59.27}, {"id": 35, "title": "Brazil sees record fall in Amazon deforestation as key election looms", "source": "bbc_news", "question": "Did the article state that the deforestation rate in the Amazon fell by 41.8% in the year to July 2026, described as the biggest drop since records began in 1988? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 1.0, "p_yes": 1.0, "p_no": 0.0, "margin": 12.0806, "latency_ms": 67.02}, {"id": 36, "title": "Rare pink diamond goes on display in France 100 years after amateur heist", "source": "bbc_news", "question": "Did the events described in 'Rare pink diamond goes on display in France 100 years after amateur heist' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -36.0737, "latency_ms": 74.91}, {"id": 37, "title": "Pope discharged from hospital days after lung cancer surgery", "source": "bbc_news", "question": "Did the article state that the Pope's doctors confirmed there was no sign that the cancer had spread following his Tuesday surgery? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -39.0225, "latency_ms": 45.44}, {"id": 39, "title": "Actress Selma Blair says she 'did not intend to harm anyone' in plane altercation", "source": "bbc_news", "question": "Did the article state that Blair opened the aircraft door during the Delta Airlines flight? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -25.9926, "latency_ms": 80.95}, {"id": 41, "title": "Trump 'completely wrong' to restrict support for Ukraine, Italian minister tells BBC", "source": "bbc_news", "question": "Did the events described in 'Trump 'completely wrong' to restrict support for Ukraine, Italian minister tells BBC' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -23.7305, "latency_ms": 184.51}, {"id": 42, "title": "The uncertain future of Canada's 30 rescued belugas", "source": "bbc_news", "question": "Did the events described in 'The uncertain future of Canada's 30 rescued belugas' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -33.1498, "latency_ms": 300.0}, {"id": 45, "title": "Trial of German steakhouse heiress that sparked a huge spy scandal", "source": "bbc_news", "question": "Did the article state that August Hanning's arrest occurred after the Hamburg trial of Christina Block and six others in Hamburg? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 1.0, "p_yes": 1.0, "p_no": 0.0, "margin": 15.8058, "latency_ms": 165.77}, {"id": 47, "title": "Inside Ukrainian offensive pushing Russia back - with Starlink playing a key role", "source": "bbc_news", "question": "Did the article confirm with a Russian official source that Ukraine has liberated 277 sq km in the Donbas as part of Operation Vivaldi? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -18.5182, "latency_ms": 244.87}, {"id": 48, "title": "Banks expect to be hit with higher taxes in Budget", "source": "bbc_news", "question": "Did the article state that Healey would definitely revert the bank surcharge from 3% back to 8% as part of the Budget, or is it described as a possible option with caveats? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -34.025400000000005, "latency_ms": 157.98}, {"id": 49, "title": "I find it quite demoralising in store - why I do all my shopping online", "source": "bbc_news", "question": "Did the article indicate that Primark's home delivery service existed before it launched the 2022 click-and-collect service? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -33.6079, "latency_ms": 146.68}, {"id": 50, "title": "Ship attack reports near Hormuz reach record high as oil exports slow", "source": "bbc_news", "question": "Did the events described in 'Ship attack reports near Hormuz reach record high as oil exports slow' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 1.0, "p_yes": 0.0, "p_no": 1.0, "margin": -12.9383, "latency_ms": 165.08}, {"id": 20, "title": "Iran parliament to review compliance with IAEA standards", "source": "wikinews", "question": "Did the article state that Iran actually ended its nuclear inspections within 60 days after the UN Security Council sanctions were imposed? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.9998, "p_yes": 0.0002, "p_no": 0.9998, "margin": -8.5471, "latency_ms": 38.75}, {"id": 38, "title": "Katie Zacharia leaving White House role less than five days into job", "source": "bbc_news", "question": "Did the article indicate that Zacharia's admission of not passing the bar exam occurred after she announced her departure from the White House role? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.9995, "p_yes": 0.0005, "p_no": 0.9995, "margin": -7.5619, "latency_ms": 114.94}, {"id": 44, "title": "A thousand slogans echoed here - but it could be the end for iconic Delhi protest site", "source": "bbc_news", "question": "Did the article state that the Delhi Police acted after the Supreme Court suggested identifying alternative sites with adequate infrastructure, before Jantar Mantar was designated as no longer a protest site? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 0.9995, "p_yes": 0.9995, "p_no": 0.0005, "margin": 7.6594, "latency_ms": 272.59}, {"id": 29, "title": "Anti-government protesters battle with police in Albania", "source": "bbc_news", "question": "Did the article confirm, at the time of reporting, that rubber bullets were used for the first time during the protests? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.9994, "p_yes": 0.0006, "p_no": 0.9994, "margin": -7.3689, "latency_ms": 151.28}, {"id": 6, "title": "Indiana Department of Homeland Security violates Wikipedia copyright", "source": "wikinews", "question": "Did the events described in 'Indiana Department of Homeland Security violates Wikipedia copyright' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.9993, "p_yes": 0.0007, "p_no": 0.9993, "margin": -7.2113, "latency_ms": 105.63}, {"id": 34, "title": "Nursery owner in China jailed for life after hundreds of children poisoned", "source": "bbc_news", "question": "Did the article indicate that investigators reported the lead levels of the red date cake (1052 mg/kg) and the corn sausage rolls (1340 mg/kg) before reporting that dozens of provincial officials and hospital staff attempted to cover up the incident? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 0.9993, "p_yes": 0.9993, "p_no": 0.0007, "margin": 7.291499999999999, "latency_ms": 55.2}, {"id": 3, "title": "AFCON 2013: Hosts South Africa draw 0-0 with Cape Verde Islands", "source": "wikinews", "question": "Did Bongani Khumalo's injury-time header occur after the penalty appeal rejected by the referee? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 0.9992, "p_yes": 0.9992, "p_no": 0.0008, "margin": 7.1734, "latency_ms": 57.15}, {"id": 5, "title": "US military investigation clears soldiers in shooting of Nicola Calipari", "source": "wikinews", "question": "Did the Italian government reject the investigation's findings before Berlusconi apologised for 'an unfortunate leak' that suggested the investigation was completed? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 0.999, "p_yes": 0.999, "p_no": 0.001, "margin": 6.9041, "latency_ms": 85.2}, {"id": 40, "title": "Judge throws out child sex abuse charges against actor Timothy Busfield", "source": "bbc_news", "question": "Did the events described in 'Judge throws out child sex abuse charges against actor Timothy Busfield' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.999, "p_yes": 0.001, "p_no": 0.999, "margin": -6.9162, "latency_ms": 75.61}, {"id": 46, "title": "What we learned from heated US midterm Senate debates", "source": "bbc_news", "question": "According to the article, did Reuters analysis indicate that two-thirds of candidates in competitive US House and Senate races have broken with the president in some way this election cycle? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 0.9976, "p_yes": 0.9976, "p_no": 0.0024, "margin": 6.0464, "latency_ms": 249.91}, {"id": 11, "title": "China and Europe face new avian flu outbreaks", "source": "wikinews", "question": "Did the article indicate that Russia is waiting for confirmation that the H5N1 strain killed several hundred ducks near Moscow, rather than asserting that it did? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 0.9953, "p_yes": 0.9953, "p_no": 0.0047, "margin": 5.3658, "latency_ms": 59.66}, {"id": 25, "title": "Green Party wins major by-election in northern England city of Manchester", "source": "wikinews", "question": "Did the events described in 'Green Party wins major by-election in northern England city of Manchester' result in officially confirmed fatalities? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.995, "p_yes": 0.005, "p_no": 0.995, "margin": -5.3014, "latency_ms": 178.6}, {"id": 4, "title": "Lewis Hamilton wins 2008 Monaco Grand Prix", "source": "wikinews", "question": "Did the article claim that Kimi Räikkönen overtook Rubens Barrichello, Kazuki Nakajima and Nelson Piquet Jr. on lap 13 under a waived yellow flag condition? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.9886, "p_yes": 0.0114, "p_no": 0.9886, "margin": -4.4657, "latency_ms": 98.09}, {"id": 31, "title": "Photos show luxury boat with 50m pool and water slides near Kim Jong Un's summer retreat", "source": "bbc_news", "question": "Did the article confirm that the 50m pool vessel relocated in early July to waters off the Kalma Peninsula for use by Kim Jong Un and his family? Answer strictly Yes or No.", "expected": "No", "decision": "No", "is_correct": true, "confidence": 0.9867, "p_yes": 0.0133, "p_no": 0.9867, "margin": -4.3032, "latency_ms": 198.17}, {"id": 43, "title": "Toxic algorithms wouldn't let them go - now Australia wants an off switch", "source": "bbc_news", "question": "Did the article state that Flynn Martin began being overwhelmed by Andrew Tate and other manosphere figures about four years ago, when he was twenty? Answer strictly Yes or No.", "expected": "Yes", "decision": "Yes", "is_correct": true, "confidence": 0.9335, "p_yes": 0.9335, "p_no": 0.0665, "margin": 2.6421, "latency_ms": 112.88}];
+    const container = document.getElementById('chart-bars');
+    const tBox = document.getElementById('tooltip-box');
+    const tTitle = document.getElementById('t-title');
+    const tMeta = document.getElementById('t-meta');
+
+    data.forEach((item, idx) => {
+      const bar = document.createElement('div');
+      const isYes = item.decision === 'Yes';
+      const confPct = item.confidence * 100;
+      
+      // Scale height between 50% and 100% (so min 93% is visibly differentiated)
+      // Visual range: 90% -> 20px, 100% -> 140px
+      const heightPx = Math.max(25, ((confPct - 90) / 10) * 115 + 25);
+      
+      bar.className = 'flex-1 bar-hover rounded-t transition-all cursor-pointer relative ' + (isYes ? 'bg-emerald-500' : 'bg-sky-500');
+      bar.style.height = heightPx + 'px';
+      bar.setAttribute('title', item.title);
+
+      bar.addEventListener('mouseenter', () => {
+        tTitle.innerHTML = `<span class="font-bold text-[var(--foreground)]">#${idx + 1} [${item.source.toUpperCase()}]</span> ${item.title}`;
+        tMeta.innerHTML = `
+          <span>Pytanie: <strong class="text-[var(--foreground)]">${item.question}</strong></span><br>
+          <span>Decyzja: <strong class="${isYes ? 'text-emerald-500' : 'text-sky-500'}">${item.decision}</strong> (Oczekiwano: ${item.expected})</span> | 
+          <span>Pewność: <strong class="text-[var(--foreground)] font-bold">${confPct.toFixed(2)}%</strong></span> | 
+          <span>P(Yes): ${ (item.p_yes * 100).toFixed(2) }%</span> | 
+          <span>P(No): ${ (item.p_no * 100).toFixed(2) }%</span> | 
+          <span>Margines Logitów &Delta;: ${ item.margin > 0 ? '+' : '' }${ item.margin.toFixed(2) }</span>
+        `;
+      });
+
+      container.appendChild(bar);
+    });
+
+    // Set first item as initial display
+    if (data.length > 0) {
+      const first = data[0];
+      tTitle.innerHTML = `<span class="font-bold text-[var(--foreground)]">#1 [${first.source.toUpperCase()}]</span> ${first.title}`;
+      tMeta.innerHTML = `
+        <span>Pytanie: <strong class="text-[var(--foreground)]">${first.question}</strong></span><br>
+        <span>Decyzja: <strong class="text-emerald-500">${first.decision}</strong> (Oczekiwano: ${first.expected})</span> | 
+        <span>Pewność: <strong class="text-[var(--foreground)] font-bold">${(first.confidence * 100).toFixed(2)}%</strong></span> | 
+        <span>P(Yes): ${ (first.p_yes * 100).toFixed(2) }%</span> | 
+        <span>P(No): ${ (first.p_no * 100).toFixed(2) }%</span> | 
+        <span>Margines Logitów &Delta;: +${first.margin.toFixed(2)}</span>
+      `;
+    }
+  </script>
+</body>
+</html>

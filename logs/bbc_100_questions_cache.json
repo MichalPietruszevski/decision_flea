@@ -1,0 +1,502 @@
+{
+  "Violent clashes, looting and buildings ablaze in France as over 1,000 arrested after protests": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that in Paris the main march was largely peaceful in the afternoon but later some groups lit fires and torched vehicles, including at Place de la République? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Trump waives several Russia sanctions as row with Zelensky intensifies": {
+    "general_expected": "No",
+    "complex_question": "Did the executive order issued by Trump suspend all sanctions on Russia, according to the article? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "European diplomats attacked by Israeli settlers in West Bank": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the assault on the European diplomats occurred before the assault on Palestinians and Heidi Levine in the West Bank? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Anti-government protesters battle with police in Albania": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm, at the time of reporting, that rubber bullets were used for the first time during the protests? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "At least 17 dead in crush at Hindu festival event in India": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that the seven-year-old girl was among the dead with independent verification? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Photos show luxury boat with 50m pool and water slides near Kim Jong Un's summer retreat": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that the 50m pool vessel relocated in early July to waters off the Kalma Peninsula for use by Kim Jong Un and his family? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Teacher fought US school attacker before armed dad shot suspect 'multiple times'": {
+    "general_expected": "No",
+    "complex_question": "Did the article explicitly state that the father confronted the suspect before the attacker killed the three victims? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Three men jailed for 158 years each for murdering Australian and US surfers in Mexico": {
+    "general_expected": "No",
+    "complex_question": "Did the article report that the victims were killed in an apparent botched robbery on a secluded beach in Baja California in 2024, and that their bodies were found dumped down a well? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Nursery owner in China jailed for life after hundreds of children poisoned": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article indicate that investigators reported the lead levels of the red date cake (1052 mg/kg) and the corn sausage rolls (1340 mg/kg) before reporting that dozens of provincial officials and hospital staff attempted to cover up the incident? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Brazil sees record fall in Amazon deforestation as key election looms": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the deforestation rate in the Amazon fell by 41.8% in the year to July 2026, described as the biggest drop since records began in 1988? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Rare pink diamond goes on display in France 100 years after amateur heist": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Rare pink diamond goes on display in France 100 years after amateur heist' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Pope discharged from hospital days after lung cancer surgery": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the Pope's doctors confirmed there was no sign that the cancer had spread following his Tuesday surgery? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Katie Zacharia leaving White House role less than five days into job": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that Zacharia's admission of not passing the bar exam occurred after she announced her departure from the White House role? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Actress Selma Blair says she 'did not intend to harm anyone' in plane altercation": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Blair opened the aircraft door during the Delta Airlines flight? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Judge throws out child sex abuse charges against actor Timothy Busfield": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Judge throws out child sex abuse charges against actor Timothy Busfield' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Trump 'completely wrong' to restrict support for Ukraine, Italian minister tells BBC": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Trump 'completely wrong' to restrict support for Ukraine, Italian minister tells BBC' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "The uncertain future of Canada's 30 rescued belugas": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'The uncertain future of Canada's 30 rescued belugas' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Toxic algorithms wouldn't let them go - now Australia wants an off switch": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Flynn Martin began being overwhelmed by Andrew Tate and other manosphere figures about four years ago, when he was twenty? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "A thousand slogans echoed here - but it could be the end for iconic Delhi protest site": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the Delhi Police acted after the Supreme Court suggested identifying alternative sites with adequate infrastructure, before Jantar Mantar was designated as no longer a protest site? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Trial of German steakhouse heiress that sparked a huge spy scandal": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that August Hanning's arrest occurred after the Hamburg trial of Christina Block and six others in Hamburg? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "What we learned from heated US midterm Senate debates": {
+    "general_expected": "No",
+    "complex_question": "According to the article, did Reuters analysis indicate that two-thirds of candidates in competitive US House and Senate races have broken with the president in some way this election cycle? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Inside Ukrainian offensive pushing Russia back - with Starlink playing a key role": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm with a Russian official source that Ukraine has liberated 277 sq km in the Donbas as part of Operation Vivaldi? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Banks expect to be hit with higher taxes in Budget": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Healey would definitely revert the bank surcharge from 3% back to 8% as part of the Budget, or is it described as a possible option with caveats? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "I find it quite demoralising in store - why I do all my shopping online": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that Primark's home delivery service existed before it launched the 2022 click-and-collect service? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Ship attack reports near Hormuz reach record high as oil exports slow": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Ship attack reports near Hormuz reach record high as oil exports slow' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Nandy 'minded to intervene' in Sky's £1.6bn takeover of ITV entertainment arm": {
+    "general_expected": "No",
+    "complex_question": "Did Nandy's letter state with certainty that the Sky-ITV tie-up would undermine the range of views in UK news within the first year after the deal? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Living with a stink? Technology might help": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article claim that the observed improvement in odour levels in Milpitas is solely due to the introduction of drones and automatic monitoring at Newby Island landfill? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "'I paid thousands to a company for jobs that never came'": {
+    "general_expected": "No",
+    "complex_question": "Did Patel receive guaranteed sponsored healthcare jobs within eight months of paying for the programme, despite emails advertising a 'three-month recruitment programme' offering 'training and placement with sponsorship' for £5,500? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "How backlash against data centres could shape the US midterm elections": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that a year ago the senator was not thinking much about data centres and that now he is having regular meetings with staff to track their impact and working on new legislation aimed at curbing their expansion across the country? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "AI giant Anthropic woos potential investors ahead of stock market debut": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'AI giant Anthropic woos potential investors ahead of stock market debut' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Healey says surprise UK growth is 'sign of resilience' ahead of Budget": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that August's monthly growth of 0.1% defied analysts' forecasts of a contraction and that the IMF upgraded this year's UK forecast earlier in the week? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "How much is the minimum wage?": {
+    "general_expected": "Yes",
+    "complex_question": "Did the article state that the government plans to unify the minimum wage for all adults by 2026? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Drop-off charges at UK airports to be reviewed after sharp increase": {
+    "general_expected": "Yes",
+    "complex_question": "Did the RAC's July analysis in 2026 find that London City Airport, which only introduced drop-off charges in 2026, was the most expensive on a per-minute basis for drop-offs? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Netflix to shed 1,000 jobs in steepest cuts since 2022": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Netflix to shed 1,000 jobs in steepest cuts since 2022' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Toilet paper and secret recorders: What we know about the arrest of the Saudi OpenAI engineer": {
+    "general_expected": "No",
+    "complex_question": "Given that the article states Alfozan had no authority to access or be involved with meetings in the room, and that CCTV footage recorded him near the conference room on eight separate occasions in September, does the article confirm that he had authorization to access the room? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Faisal Islam: What surprise praise for UK economy tells us about the Budget": {
+    "general_expected": "No",
+    "complex_question": "Did Kristalina Georgieva's remark come before Silvana Tenreyro's remark in the article? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Driving test waits fall to two-year low - but still average 20 weeks": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that the DVSA had already reduced the average waiting time to seven weeks by the end of last year? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "US inflation rises more than expected - here's what is happening with prices": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that crude oil price was over $100 per barrel before the US-Israel war with Iran began? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Civil servant faked illness with make-up to juggle five jobs, court hears": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that Kashim Chowdhury held five overlapping full-time government jobs between February 2020 and September 2023? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Wayfair among firms fined millions for misleading sales tactics": {
+    "general_expected": "No",
+    "complex_question": "Did the CMA report that Wayfair, Appliances Direct, and Gold's Gym had admitted to breaking the law before the investigation into online pricing began last November? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "'I applied for 200 jobs' - How 'spray and pray' AI job applications can backfire": {
+    "general_expected": "No",
+    "complex_question": "Did Tom apply for over 200 jobs before landing a role last month as a restaurant manager? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Hundreds of Royal Mail staff quitting each week under new efficiency plans": {
+    "general_expected": "No",
+    "complex_question": "Did the article provide verifiable evidence that all eight workers increased their average daily steps to exactly 25,000 after the switchover? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Not building third runway would be 'huge missed opportunity', warns Heathrow boss": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the government officially confirmed the 2039 opening date for a third runway after planning and regulatory issues? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Bank of America hit with $1.2bn fine for money laundering failings": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Bank of America's quarterly earnings had already been announced when the Treasury's $1.2 billion fine was announced? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "As Christmas rush looms, how do China-made toys find their way to the US?": {
+    "general_expected": "No",
+    "complex_question": "Did the article present two separate time-bound claims—(a) that 78.3% of toys imported into the US in 2024 came from China, and (b) that last year China-made toys were worth $9.8bn—implying different years for the figures? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "How long will humans be needed for translation?": {
+    "general_expected": "No",
+    "complex_question": "Does the article claim that the Wikipedia translation process is now fully automated with no human involvement? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Why are more roofs not made of solar tiles?": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that Tesla's decision to stop offering solar roofs occurred after disappointing sales and a lawsuit over sudden price hikes? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "How oil-rich Alberta's economy might fare if it broke away from Canada": {
+    "general_expected": "No",
+    "complex_question": "Did the external report released earlier this month propose a single fixed cost of C$50bn for separation over five years? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Rainmakers: The drones used to seed clouds": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Rainmakers: The drones used to seed clouds' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "The AI telling farmers when to harvest": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that the AI harvest-forecasting system will work identically for all farms without needing farm-specific historical data? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "The start-ups hoping to return battery making to the US": {
+    "general_expected": "No",
+    "complex_question": "Did Unigrid ship 1,000 units before the end of the year? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "X-planes: Are they needed in the new era of drones?": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'X-planes: Are they needed in the new era of drones?' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "How the oil capital of the US welcomed a solar power boom": {
+    "general_expected": "No",
+    "complex_question": "Did the hailstorm occur before the lease agreement with OCI Energy was signed in 2001? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Spain battles climate change on several fronts": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the 2025 record-breaking fires in Spain and Portugal were 40 times more likely to occur due to the warming climate, according to World Weather Attribution? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "The virtual worlds where robots are trained": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'The virtual worlds where robots are trained' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Would you buy branded clothing from your favourite tech firm?": {
+    "general_expected": "No",
+    "complex_question": "According to the article, Anthropic opened a pop-up coffee shop in Manhattan last year, while OpenAI occasionally sells branded fashion for a few days via its website; does the article establish that Anthropic's pop-up occurred before OpenAI's general sale episodes? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Low-cost clinic helps pet owners with vet bills": {
+    "general_expected": "No",
+    "complex_question": "Does the article present the 160 pets figure as an unattributed, independently verified fact rather than as information 'according to the RSPCA'? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Call for more food funding due to high living cost": {
+    "general_expected": "No",
+    "complex_question": "Did the government announce in September that fresh fruit would be included in a school food programme after the debate in the States Assembly on 29 September? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Charity reflects on changing needs over 25 years": {
+    "general_expected": "No",
+    "complex_question": "Did the article explicitly state that the charity's 25th anniversary occurred in 2026? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Nightclubs are disappearing - and it's affecting young people": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'Nightclubs are disappearing - and it's affecting young people' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "My hometown shows that high streets have to change or die": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that the council's multi-million-pound plan will guarantee that Union Street's revival will happen within a year? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Europe's car makers are in crisis. Will the threat of war rescue them?": {
+    "general_expected": "No",
+    "complex_question": "Does the article claim that the MoD contract to supply 9,000 vehicles has already been awarded to Ford, General Dynamics, and Ricardo? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Aviation faces hotter, stormier skies – and passengers might have to accept more disruption": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that the weather in the UK 'may now have cooled' and present it as a confirmed fact? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Why the UK is dithering over what to do about e-scooters": {
+    "general_expected": "No",
+    "complex_question": "Does the article state that Westminster has already decided to legalise privately owned e-scooters and make permanent hired e-scooter schemes across England? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Why Gen Z are planning for life without a state pension": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the state pension age will definitely be 68 in twenty years? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "No further action against government adviser's wife over Palestine Action post, police say": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that on Friday the Met Police were assessing whether any further investigation was required and, by Saturday, they stated that Helm's post did not meet the criminal threshold and that no further police action would be taken? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Russian man linked to deadly London hospitals hack arrested": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Vladimir K's extradition to Germany had already occurred before it was first reported in early October? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Snapchat and Instagram grooming becoming 'easier'": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Snapchat was mentioned in 324 counselling sessions about online sexual abuse between April 2025 and March 2026, and simultaneously claim that Snapchat is the primary platform for such abuse? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Porn showing choking or incest to be banned from early November, government says": {
+    "general_expected": "No",
+    "complex_question": "From the article, did starting 6 November criminalize both possessing and publishing porn that shows strangulation in England and Wales? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "GTA 6 - all you need to know about Rockstar's blockbuster game": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that GTA 6 will release on PC at the same time as PlayStation 5 and Xbox Series X/S at launch? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Bumble bought for $1.3bn in 'bet on the future of humanity'": {
+    "general_expected": "No",
+    "complex_question": "Did Ithaca Holdings acquire Bumble for over $580 million? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Phase Eight and Hobbs owner hit by cyber-attack, as H&M probes separate hack claim": {
+    "general_expected": "No",
+    "complex_question": "Did the article confirm that any customer's sensitive information had been impacted by the incident? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Fast-moving California wildfire burns homes as people are ordered to leave": {
+    "general_expected": "No",
+    "complex_question": "Did the article report that by Friday evening, six homes had either been damaged or destroyed by the Norte Fire and that one firefighter had been injured from heat exhaustion? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Avian flu and costs among reasons for loss of captive birds at Castle Espie": {
+    "general_expected": "No",
+    "complex_question": "Does the article indicate that the transfer of all captive birds from Castle Espie will occur before November? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Severe drought declared and hosepipe bans in force - is your area affected?": {
+    "general_expected": "No",
+    "complex_question": "According to the article, did the 1976 and 1995 events occur before the severe drought classification existed? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Was Neanderthal life violent? This wound suggests lethal fighting was more common": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the 75,000-year-old wounded Neanderthal and the Neanderthal remains found in 1957 lived at the same time? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "£15m for zero-emission testing at Belfast Harbour": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the £15m Local Innovation Partnerships Fund investment occurred before the Belfast Harbour zero-emission project was announced? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Sheep are disappearing from our hills - and our dinner plates": {
+    "general_expected": "No",
+    "complex_question": "Does the article provide independent verification for the claim that Hill Top Farm experienced a 'complete turnaround' over the past 20 years, shifting away from sheep farming and reducing lambing stock from over 800 to 45 this spring? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Two dead in Istanbul after heaviest rainfall in 84 years, governor says": {
+    "general_expected": "No",
+    "complex_question": "Did the article provide independent verification that the rainfall was the heaviest in Istanbul in 84 years? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Dog that hunts invasive 'sea vomit' honoured as animal of the year": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Sgiath is definitely the UK's first sea squirt-hunting dog? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "India and China aren't friends - but Nepal wants to unite them against climate threats": {
+    "general_expected": "No",
+    "complex_question": "Did India and China formally respond to Nepal's Himalayan Climate Resilience Mechanism proposal, as stated in the article, by the time of writing? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Suspected fly tippers shamed with online photos": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the 850,000 views and 2,500 comments include information on who the perpetrators might be, thereby confirming the perpetrators' identities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Little tern colony has worst breeding season": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that dogs inside the exclusion zone fully explain the year's poor breeding outcome for the little terns? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "US senators call for investigation into Ukraine's Starlink restrictions": {
+    "general_expected": "Yes",
+    "complex_question": "Did the BBC report confirm that the speed restrictions were instituted by the US defense department at the direct request of President Donald Trump? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "What is behind the success of dark skies festival?": {
+    "general_expected": "No",
+    "complex_question": "Did the events described in 'What is behind the success of dark skies festival?' result in officially confirmed fatalities? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Why is Starlink internet so important on the battlefield in Ukraine?": {
+    "general_expected": "No",
+    "complex_question": "Did the article report that the Starlink drone-speed restriction was still active on Wednesday evening? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Burnham - Rosebank and Jackdaw oil and gas decisions coming 'shortly'": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that Burnham had already set out and completed the decisions on Rosebank and Jackdaw? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "World's oldest shipwreck found off coast of Turkey": {
+    "general_expected": "No",
+    "complex_question": "According to the article, is the shipwreck's age confirmed by radiocarbon dating of wooden remains? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "First dinosaur bone from Antarctica found in a drawer": {
+    "general_expected": "No",
+    "complex_question": "Did the article indicate that the Titanosaur identification was initially uncertain when first found in 1985 and later confirmed by experts, making the initial doubt followed by verification? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "Simpler, older version of Stonehenge found three miles from famous site": {
+    "general_expected": "No",
+    "complex_question": "Did the article claim that the two wooden posts definitively lined up with the sunrise on midsummer, proving precise alignment, or is this presented as tentative in the text? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "How cleaning up the air is speeding up global warming - and revealing a bigger problem": {
+    "general_expected": "No",
+    "complex_question": "Based on the article, did Richard Tice's claim that 'Heatwaves caused by fall in pollution' reflect a scientifically established consensus at the time of the July controversy, according to the text? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "How the UK's extreme heat is shifting the conversation about air-con": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that the heat island impact alone accounted for roughly half of the 130 heat-related deaths in a previous West Midlands heatwave, according to modelling by researchers from the University of Birmingham? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "The hidden cost of the night shift and how to sleep it off": {
+    "general_expected": "No",
+    "complex_question": "Did the article present splitting sleep into two blocks as an established, proven most effective sleep pattern for night shift workers? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "After record heat, could the Atlantic make Britain's weather even more extreme?": {
+    "general_expected": "No",
+    "complex_question": "Does the article claim that the Atlantic Meridional Overturning Circulation (AMOC) has already begun to weaken and will definitely change the UK weather, including winters? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Why cheap power could matter more than clean power in the push for net zero": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Gavin's 1.5 kWh battery was sufficient to store enough electricity to significantly reduce his energy costs? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Pope pictured for first time since surgery and cancer diagnosis": {
+    "general_expected": "No",
+    "complex_question": "Did the article report that the Pope's lung cancer diagnosis occurred before the Tuesday afternoon operation? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Covid vaccine compensation scheme set for overhaul after Inquiry criticism": {
+    "general_expected": "No",
+    "complex_question": "Did the Covid Inquiry explicitly call for reform as soon as possible, and does the article state that the government has provided a definitive timetable for implementing reform by 16 October 2026? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Ten-year-old Willow among children to benefit from pioneering same-day test to spot infections": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Willow's metagenomic test was performed on the same day she became critically ill? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  },
+  "Trans people should use hospital spaces according to biological sex, NHS England says": {
+    "general_expected": "No",
+    "complex_question": "Did the Supreme Court ruling in April 2025 cause the withdrawal of the previous NHSE guidance and the issuance of the new guidance on Thursday? Answer strictly Yes or No.",
+    "complex_expected": "Yes"
+  },
+  "I'm 12 and I want to try protein powder - should I?": {
+    "general_expected": "No",
+    "complex_question": "Did the article state that Ben has been using protein powder for nearly a year? Answer strictly Yes or No.",
+    "complex_expected": "No"
+  }
+}

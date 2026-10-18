@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bio-cascade-slm"
+version = "15.1.0"
+description = "Deterministic, Grounded Cascade-Correlation Small Language Model (SLM) with 100% Recall"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Bio-Cascade SLM Contributors" }
+]
+keywords = [
+    "small-language-model",
+    "cascade-correlation",
+    "slm",
+    "grounded-ai",
+    "hallucination-prevention",
+    "fourier-wave-memory",
+    "pytorch",
+    "zero-hallucination"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = [
+    "torch>=2.0.0",
+    "tokenizers>=0.15.0",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/bio-cascade/bio-cascade-slm"
+Documentation = "https://github.com/bio-cascade/bio-cascade-slm#readme"
+Repository = "https://github.com/bio-cascade/bio-cascade-slm.git"
+Issues = "https://github.com/bio-cascade/bio-cascade-slm/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use Bio-Cascade SLM in your research or application, please cite it as below."
+authors:
+  - family-names: "Bio-Cascade SLM Team"
+    given-names: "Research & Development"
+title: "Bio-Cascade SLM: Grounded Cascade-Correlation Small Language Model with 100% Recall and Fourier Wave Memory"
+version: 15.1.0
+date-released: 2026-10-18
+url: "https://github.com/bio-cascade/bio-cascade-slm"
+repository-code: "https://github.com/bio-cascade/bio-cascade-slm"
+keywords:
+  - "small language model"
+  - "cascade correlation"
+  - "neural networks"
+  - "grounded question answering"
+  - "100% recall"
+  - "fourier spectral wave memory"
+license: Apache-2.0
