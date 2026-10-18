@@ -1,0 +1,464 @@
+[
+  {
+    "name": "Strategia A: Pytanie akcyjne/opisowe ('Did someone use AI to steal money...')",
+    "tp": 0,
+    "fp": 4,
+    "tn": 8,
+    "fn": 8,
+    "accuracy": 40.0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "latency_per_art_ms": 11.21151999977883,
+    "details": [
+      {
+        "id": 1,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 2,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 3,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 4,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.9993
+      },
+      {
+        "id": 5,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 6,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.9999
+      },
+      {
+        "id": 7,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 8,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.8251
+      },
+      {
+        "id": 9,
+        "expected": "No",
+        "predicted": "Yes",
+        "is_correct": false,
+        "confidence": 0.9876
+      },
+      {
+        "id": 10,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 1.0
+      },
+      {
+        "id": 11,
+        "expected": "No",
+        "predicted": "Yes",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 12,
+        "expected": "No",
+        "predicted": "Yes",
+        "is_correct": false,
+        "confidence": 0.9997
+      },
+      {
+        "id": 13,
+        "expected": "No",
+        "predicted": "Yes",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 14,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 1.0
+      },
+      {
+        "id": 15,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.9948
+      },
+      {
+        "id": 16,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 17,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 1.0
+      },
+      {
+        "id": 18,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 1.0
+      },
+      {
+        "id": 19,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.9006
+      },
+      {
+        "id": 20,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.9853
+      }
+    ]
+  },
+  {
+    "name": "Strategia B: Pytanie tematyczne/domenowe ('Is this article about financial crime involving AI?')",
+    "tp": 2,
+    "fp": 2,
+    "tn": 10,
+    "fn": 6,
+    "accuracy": 60.0,
+    "recall": 25.0,
+    "precision": 50.0,
+    "f1": 33.333333333333336,
+    "latency_per_art_ms": 10.355904998141341,
+    "details": [
+      {
+        "id": 1,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 2,
+        "expected": "Yes",
+        "predicted": "Yes",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 3,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0001
+      },
+      {
+        "id": 4,
+        "expected": "Yes",
+        "predicted": "Yes",
+        "is_correct": true,
+        "confidence": 0.0019
+      },
+      {
+        "id": 5,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 6,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 7,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0001
+      },
+      {
+        "id": 8,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 9,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 1.0
+      },
+      {
+        "id": 10,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 1.0
+      },
+      {
+        "id": 11,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 1.0
+      },
+      {
+        "id": 12,
+        "expected": "No",
+        "predicted": "Yes",
+        "is_correct": false,
+        "confidence": 1.0
+      },
+      {
+        "id": 13,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 14,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 15,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.9964
+      },
+      {
+        "id": 16,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.9992
+      },
+      {
+        "id": 17,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0001
+      },
+      {
+        "id": 18,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0001
+      },
+      {
+        "id": 19,
+        "expected": "No",
+        "predicted": "Yes",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 20,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      }
+    ]
+  },
+  {
+    "name": "Strategia C: Modularna fuzja kryteriów (Krok 1: Fraud/Pieniądze AND Krok 2: AI)",
+    "tp": 0,
+    "fp": 0,
+    "tn": 12,
+    "fn": 8,
+    "accuracy": 60.0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "latency_per_art_ms": 20.61490500054788,
+    "details": [
+      {
+        "id": 1,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 2,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 5e-05
+      },
+      {
+        "id": 3,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 4,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 5,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.4979
+      },
+      {
+        "id": 6,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 5e-05
+      },
+      {
+        "id": 7,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 8,
+        "expected": "Yes",
+        "predicted": "No",
+        "is_correct": false,
+        "confidence": 0.0
+      },
+      {
+        "id": 9,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.4992
+      },
+      {
+        "id": 10,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.49965
+      },
+      {
+        "id": 11,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.4983
+      },
+      {
+        "id": 12,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 13,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 14,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 15,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 16,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 17,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 18,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      },
+      {
+        "id": 19,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 5e-05
+      },
+      {
+        "id": 20,
+        "expected": "No",
+        "predicted": "No",
+        "is_correct": true,
+        "confidence": 0.0
+      }
+    ]
+  }
+]

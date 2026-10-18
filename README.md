@@ -25,6 +25,7 @@ At just **16.25 million parameters** (~65 MB disk footprint), Bio-Cascade runs n
 
 - **🎯 100.00% Recall ($FN = 0$):** Eliminates false negative omissions on critical verification tasks.
 - **⚡ Ultra-Fast CPU Inference:** 15–25 ms per query on commodity CPU without requiring GPU acceleration.
+- **🔄 In-Instance Question Adaptation:** Adapt any active model instance in-place for a custom business question in **~2 seconds on CPU** using as few as 5–10 labeled examples (`model.adapt_to_question()`).
 - **🛡️ Calibrated Confidence & Probability:** Returns explicit $P(\text{Yes})$, $P(\text{No})$, calibrated decision confidence ($\max(P, 1-P)$), and raw logit margins ($\Delta$).
 - **🚫 Zero Hallucinations & Refusal Gate:** Fails closed; automatically refuses queries whose answers cannot be strictly deduced from the provided context.
 - **🔬 Certified CI/CD Gates:** Meets all 9 automated audit gates (`audit_guard.py`) forbidding hardcoded heuristics, rule-based dictionaries, or prompt leakage.
@@ -88,49 +89,66 @@ pip install -r requirements.txt
 python QUICKSTART.py
 ```
 
-### 3. Python API Usage
+### 3. Python Library API Usage (`import bio_cascade`)
+
+```python
+import bio_cascade
+import pandas as pd
+
+# 1. Initialize High-Level Pipeline
+pipeline = bio_cascade.BioCascade()
+
+# 2. Single Text Verification
+res = pipeline.settings(
+    text="Aether Dynamics announced record quarterly revenues reaching 42.85 million euros.",
+    question="Did Aether Dynamics announce record quarterly revenues?",
+).run()
+
+print(res["decision"])    # "Yes"
+print(res["confidence"])  # 1.0 (100.0%)
+
+# 3. Pandas DataFrame Batch Processing with Active Learning (OpenAI Assistant)
+df = pd.DataFrame([
+    {"article": "Fraudsters used AI voice cloning to steal $25M from a company."},
+    {"article": "Burglars broke into a warehouse and stole copper cables manually."},
+    {"article": "Mastercard AI system blocked $20B in attempted fraud."}
+])
+
+annotated_df, telemetry = pipeline.settings(
+    question="Did someone use AI or deepfakes to steal money or commit fraud in this story?",
+    dataframe=df,
+    text_column="article",
+    decision_column="is_ai_fraud",
+    assistant={"model": "gpt-4o-mini"}, # or MockOpenAIAssistant() for offline
+    spot_check_rate=0.05,               # 5% random spot-checks with LLM
+    rollback_window=5                   # Auto-rollback & re-evaluate if drift occurs
+).run()
+
+print(annotated_df[["article", "is_ai_fraud", "confidence"]])
+print(f"API Cost Savings: {telemetry['api_savings_pct']}% | Latency: {telemetry['avg_ms_per_row']} ms/row")
+# Full documentation: docs/PIPELINE_ACTIVE_LEARNING.md
+```
+
+### 4. Low-Level Core Model (`BioCascadeGenerativeDecoder`)
 
 ```python
 from src.cascor.bio_cascade_generative import BioCascadeGenerativeDecoder
 
-# 1. Initialize tokenizer & load weights
 model = BioCascadeGenerativeDecoder("models/bio_bpe_32k.json")
 model.load_checkpoint("models/bio_cascade_v15_1_milestone.pkl", strict=False)
 model.eval()
 
-context = (
-    "Founded twelve years ago in Geneva, Aether Dynamics announced record quarterly revenues "
-    "reaching 42.85 million euros. Meanwhile, its subsidiary Helios Energy focused on smart-grid "
-    "optimization in Munich under leadership by director Marcus Thorne."
+# In-Place Question Adaptation (Few-shot head tuning in ~2s on CPU)
+model.adapt_to_question(
+    question="Did someone use AI or deepfakes to commit fraud?",
+    data=[
+        {"text": "Fraudsters cloned CEO's voice with AI synthesis to steal $25M.", "decision": "Yes"},
+        {"text": "Accountant embezzled funds by forging paper checks manually.", "decision": "No"},
+    ],
+    epochs=120
 )
-
-# 2. Boolean Entailment Mode (100% Recall + Calibrated Confidence)
-res_bool = model.generate_response(
-    context=context, 
-    question="Did Aether Dynamics announce record quarterly revenues reaching 42.85 million euros?", 
-    mode="boolean"
-)
-
-print(res_bool["generated_text"])  # "Yes"
-print(res_bool["confidence"])      # 1.0 (100.0%)
-print(res_bool["probabilities"])   # {'yes': 1.0, 'no': 0.0, 'refusal': 0.0}
-print(res_bool["verif_logits"])    # Margin Δ = +16.66
-
-# 3. Exact Entity Extraction (mode='word')
-res_ext = model.generate_response(
-    context=context,
-    question="Which company announced record quarterly revenues reaching 42.85 million euros?",
-    mode="word"
-)
-print(res_ext["generated_text"])   # "Aether Dynamics"
-
-# 4. Out-of-Context Refusal Gate (Zero Hallucination)
-res_refusal = model.generate_response(
-    context=context,
-    question="What was the stock price of Aether Dynamics on the Tokyo Stock Exchange?",
-    mode="word"
-)
-print(res_refusal["generated_text"])  # "No information provided in context."
+res = model.generate_response(context, question, mode="boolean")
+# Full documentation: docs/IN_INSTANCE_QUESTION_ADAPTATION.md
 ```
 
 ---
@@ -195,10 +213,17 @@ bio-cascade-slm/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml                          # GitHub Actions CI workflow (Linux/Windows)
+├── bio_cascade/                            # Root importable package (`import bio_cascade`)
+│   └── __init__.py                         # High-level pipeline entrypoint
 ├── docs/
 │   ├── ARCHITECTURE_V15_1.md               # Complete mathematical & layer specification
 │   ├── AUDIT_GATES_SPECIFICATION.md        # Technical specification of all 9 audit gates
+│   ├── IN_INSTANCE_QUESTION_ADAPTATION.md  # Guide to in-place few-shot question adaptation
+│   ├── PIPELINE_ACTIVE_LEARNING.md         # Guide to .settings() & OpenAI Assistant loop
 │   └── VERIFICATION_AND_100PCT_RECALL.md   # Mathematical proof & confusion matrices
+├── examples/
+│   ├── active_learning_pipeline_demo.py    # E2E Active Learning & Rollback pipeline demo
+│   └── adapt_custom_question.py            # Practical 2-second in-instance adaptation demo
 ├── logs/
 │   ├── bbc_100_questions_cache.json        # 200 BBC benchmark evaluations
 │   ├── wikinews_100_questions_cache.json   # 200 Wikinews benchmark evaluations
@@ -213,13 +238,19 @@ bio-cascade-slm/
 │   ├── generate_confidence_chart.py        # Generates interactive HTML confidence chart
 │   └── train_multicorpus_verifier.py       # Multi-corpus training harness
 ├── src/
-│   └── cascor/
+│   ├── bio_cascade/                        # High-level pipeline & assistant modules
+│   │   ├── __init__.py
+│   │   ├── assistant.py                    # OpenAI Standard Bridge & Offline Mock
+│   │   ├── pipeline.py                     # BioCascade pipeline & active learning engine
+│   │   └── settings.py                     # BioCascadeSettings dataclass
+│   └── cascor/                             # Core CasCor SLM neural architecture
 │       ├── __init__.py
 │       ├── audit_guard.py                  # Master CI/CD audit runner (9 gates)
 │       └── bio_cascade_generative.py       # Core SLM decoder architecture
 ├── tests/
 │   ├── run_blind_test.py                   # Out-of-distribution blind test
 │   ├── test_auto_routing.py                # Automatic question routing test
+│   ├── test_bio_cascade_pipeline.py        # Active learning, settings & rollback tests
 │   ├── test_comprehensive_qa.py            # Comprehensive QA evaluation suite
 │   └── test_poland_history_50.py           # 50 Polish historical QA tests
 ├── .gitattributes                          # Git LFS & line ending normalization

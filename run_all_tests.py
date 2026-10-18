@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 TESTS = [
     ("src/cascor/audit_guard.py", "Automated Audit Guard (9 bramek architektonicznych)"),
+    ("tests/test_bio_cascade_pipeline.py", "BioCascade Pipeline, Settings & Active Learning"),
     ("tests/test_kogucik_experiment_en.py", "Kogucik Salience & Entity Attribution"),
     ("tests/run_blind_test.py", "Blind Torture Test (Odmowy & Antyhalucynacja)"),
     ("tests/test_poland_history_50.py", "Polish Historical Knowledge & Refusal (50 Qs)"),

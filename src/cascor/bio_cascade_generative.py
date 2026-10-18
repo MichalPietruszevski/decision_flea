@@ -4421,3 +4421,171 @@ class BioCascadeGenerativeDecoder(nn.Module):
             "context_token_count": N_ctx,
             "total_prefill_tokens": len(full_prefill),
         }
+
+    def extract_runtime_features(self, context_text: str, question_text: str) -> tuple[torch.Tensor, torch.Tensor]:
+        """Extracts exact runtime verification features (vf) and cascade activation (l6_act) for a query pair."""
+        ctx_clean = clean_news_context(context_text)
+        prompt_str = f"Context:\n{ctx_clean}\n\nQuestion: {question_text}\nAnswer:"
+        enc_res = self.tokenizer.encode(prompt_str)
+        full_prefill = enc_res.ids
+        ctx_split_str = f"Context:\n{ctx_clean}"
+        N_ctx = len(self.tokenizer.encode(ctx_split_str).ids)
+
+        prefill_t = torch.tensor([full_prefill], dtype=torch.long, device=self.device)
+        emb_prefill = self.get_token_embeddings(prefill_t)
+        memory_bank, _ = self.context_encoder(emb_prefill)
+        memory_bank = F.normalize(memory_bank, p=2, dim=-1)
+
+        last_id = full_prefill[-1]
+        y_emb_0 = self.get_token_embeddings(torch.tensor([[last_id]], device=self.device))[0]
+        ctx_init_0 = torch.zeros(1, self.hidden_dim, device=self.device)
+        h_0 = self.gru_cell(torch.cat([y_emb_0, ctx_init_0], dim=-1), memory_bank[:, -1, :])
+        _, _, l6_act_0 = self.compute_cascade(h_0)
+
+        vf = self.extract_verification_features(ctx_clean, question_text, emb_prefill, N_ctx, full_prefill)
+        return vf.detach(), l6_act_0.detach()
+
+    def adapt_to_question(
+        self,
+        question: str,
+        data: Any,
+        epochs: int = 150,
+        lr: float = 0.005,
+        weight_decay: float = 1e-5,
+        yes_weight: float = 1.5,
+        save_path: str | Path | None = None,
+    ) -> dict[str, Any]:
+        """Fine-tunes the L6 verification head in-place for a specific user-defined question and labeled dataset.
+
+        Args:
+            question: The target evaluation / filtering question to calibrate for.
+            data: Labeled training dataset. Can be:
+                  - A list of dicts: [{'text': ..., 'decision': 'Yes'/'No'}, ...]
+                  - A list of tuples: [('article text...', 'Yes'), ('article text...', 'No'), ...]
+                  - A Pandas DataFrame with columns ('text' or 'context') and ('decision' or 'label').
+            epochs: Number of gradient descent steps on the verification head (default: 150).
+            lr: Learning rate for AdamW optimizer (default: 0.005).
+            weight_decay: L2 regularization coefficient (default: 1e-5).
+            yes_weight: Asymmetric loss multiplier for positive Class 0 ('Yes') to enforce maximum Recall (default: 5.0).
+            save_path: Optional file path to persist the adapted checkpoint (.pkl).
+
+        Returns:
+            Dictionary containing adaptation statistics (samples_count, final_loss, train_accuracy, train_recall).
+        """
+        self.eval()
+
+        # 1. Parse and normalize dataset rows
+        samples: list[tuple[str, int]] = []
+        if hasattr(data, "to_dict") and hasattr(data, "columns"):
+            # Pandas DataFrame
+            rows = data.to_dict(orient="records")
+        elif isinstance(data, (list, tuple)):
+            rows = data
+        else:
+            raise ValueError("Unsupported data format. Expected list of dicts, list of tuples, or pandas DataFrame.")
+
+        for row in rows:
+            if isinstance(row, dict):
+                text = row.get("text") or row.get("context") or row.get("article") or ""
+                decision = row.get("decision") or row.get("label") or row.get("expected") or ""
+            elif isinstance(row, (list, tuple)) and len(row) >= 2:
+                text, decision = row[0], row[1]
+            else:
+                continue
+
+            if not isinstance(text, str) or not text.strip():
+                continue
+
+            # Map decision to class index: 0=Yes, 1=No, 2=Refusal
+            if isinstance(decision, bool):
+                lbl = 0 if decision else 1
+            elif isinstance(decision, (int, float)):
+                lbl = int(decision)
+            elif isinstance(decision, str):
+                d_lower = decision.strip().lower()
+                if d_lower in ("yes", "tak", "true", "1", "positive", "t", "y"):
+                    lbl = 0
+                elif d_lower in ("no", "nie", "false", "0", "negative", "f", "n"):
+                    lbl = 1
+                elif d_lower in ("refusal", "odmowa", "brak", "unknown", "2"):
+                    lbl = 2
+                else:
+                    lbl = 1
+            else:
+                lbl = 1
+
+            samples.append((text.strip(), lbl))
+
+        if not samples:
+            raise ValueError("No valid (text, decision) samples could be parsed from input data.")
+
+        # 2. Extract verification features
+        vf_list: list[torch.Tensor] = []
+        act_list: list[torch.Tensor] = []
+        y_list: list[int] = []
+
+        with torch.no_grad():
+            for text, lbl in samples:
+                vf, act = self.extract_runtime_features(text, question)
+                vf_list.append(vf)
+                act_list.append(act)
+                y_list.append(lbl)
+
+        X_f = torch.cat(vf_list, dim=0)
+        X_a = torch.cat(act_list, dim=0)
+        Y = torch.tensor(y_list, dtype=torch.long, device=self.device)
+
+        # 3. Train L6VerificationHead
+        loss_weights = torch.tensor([yes_weight, 1.0, 2.5], device=self.device)
+        criterion = nn.CrossEntropyLoss(weight=loss_weights)
+        optimizer = torch.optim.AdamW(self.l6_verification_head.parameters(), lr=lr, weight_decay=weight_decay)
+
+        best_fn = 9999
+        best_loss = 9999.0
+        best_acc = 0.0
+        best_state = None
+
+        self.train()
+        for _ in range(epochs):
+            optimizer.zero_grad()
+            logits = self.l6_verification_head(X_f, X_a)
+            loss = criterion(logits, Y)
+            loss.backward()
+            optimizer.step()
+
+            # Track best state
+            with torch.no_grad():
+                preds = logits[:, :2].argmax(dim=-1)
+                acc = (preds == Y).float().mean().item() * 100.0
+                fn = ((preds == 1) & (Y == 0)).sum().item()
+                if fn <= best_fn and loss.item() < best_loss:
+                    best_fn = fn
+                    best_loss = loss.item()
+                    best_acc = acc
+                    best_state = {k: v.clone() for k, v in self.l6_verification_head.state_dict().items()}
+
+        # 4. Restore best state in-place
+        if best_state is not None:
+            self.l6_verification_head.load_state_dict(best_state)
+
+        self.eval()
+
+        # 5. Optional checkpoint persistence
+        if save_path:
+            self.save_checkpoint(save_path)
+
+        pos_count = sum(1 for _, lbl in samples if lbl == 0)
+        neg_count = sum(1 for _, lbl in samples if lbl == 1)
+
+        return {
+            "question": question,
+            "samples_count": len(samples),
+            "positive_samples": pos_count,
+            "negative_samples": neg_count,
+            "augmented_tensors": X_f.shape[0],
+            "epochs": epochs,
+            "final_loss": round(float(best_loss), 4),
+            "train_accuracy_pct": round(float(best_acc), 2),
+            "false_negatives": int(best_fn),
+            "saved_checkpoint": str(save_path) if save_path else None,
+        }
