@@ -156,26 +156,73 @@ def test_dataframe_with_single_definition_in_settings():
     assert telemetry["total_rows"] == 2
 
 
+def test_financial_fraud_scam_detection():
+    """Verify that financial fraud / scam news are accurately classified against non-fraud news."""
+    flea = DecisionFlea()
+    
+    df = pd.DataFrame([
+        {
+            "id": 1,
+            "text": "Developers of the Squid Game meme token vanished with 3.3 million dollars in investor deposits, crashing the token price to zero.",
+            "expected": "Yes"
+        },
+        {
+            "id": 2,
+            "text": "Criminals synthesized the voice of a CEO to trick a controller into approving an urgent wire transfer of 220,000 pounds.",
+            "expected": "Yes"
+        },
+        {
+            "id": 3,
+            "text": "Anthropic announced the release of a new benchmark dataset for evaluating the safety of generative models.",
+            "expected": "No"
+        },
+        {
+            "id": 4,
+            "text": "The European Central Bank maintained its benchmark interest rate at 4.0 percent across the eurozone.",
+            "expected": "No"
+        }
+    ])
+    
+    question = "Does this article describe financial fraud?"
+    flea.settings(
+        dataframe=df,
+        question=question,
+        text_column="text",
+        decision_column="is_fraud",
+        verbose=False,
+    )
+    res_df, telemetry = flea.run()
+    
+    assert res_df.iloc[0]["is_fraud"] == "Yes"
+    assert res_df.iloc[1]["is_fraud"] == "Yes"
+    assert res_df.iloc[2]["is_fraud"] == "No"
+    assert res_df.iloc[3]["is_fraud"] == "No"
+
+
 if __name__ == "__main__":
     print("=" * 70)
     print("  🧪 TESTING DECISION-FLEA PIPELINE & ACTIVE LEARNING LOOP")
     print("=" * 70)
 
-    print("\n[1/4] Testing single text inference...")
+    print("\n[1/5] Testing single text inference...")
     test_single_text_inference()
     print("   ✅ PASS: Single text inference works.")
 
-    print("\n[2/4] Testing DataFrame batch processing with tuning batch...")
+    print("\n[2/5] Testing DataFrame batch processing with tuning batch...")
     test_dataframe_with_tuning_batch()
     print("   ✅ PASS: DataFrame batch processing works.")
 
-    print("\n[3/4] Testing Active Learning with Mock Assistant & Rollback...")
+    print("\n[3/5] Testing Active Learning with Mock Assistant & Rollback...")
     test_active_learning_with_mock_assistant_and_rollback()
     print("   ✅ PASS: Active Learning & Rollback Drift Recovery works.")
 
-    print("\n[4/4] Testing DataFrame with single definition in .settings()...")
+    print("\n[4/5] Testing DataFrame with single definition in .settings()...")
     test_dataframe_with_single_definition_in_settings()
     print("   ✅ PASS: Single definition across DataFrame rows works.")
+
+    print("\n[5/5] Testing Financial Fraud & Scam Detection...")
+    test_financial_fraud_scam_detection()
+    print("   ✅ PASS: Financial Fraud & Scam detection works.")
 
     print("\n" + "=" * 70)
     print("  🎉 ALL DECISION-FLEA PIPELINE TESTS PASSED!")

@@ -177,7 +177,7 @@ class DecisionFlea:
             # Check bootstrap accuracy against seed pool
             seed_correct = 0
             for item in training_pool:
-                pred = self.model.generate_response(item["text"], question, mode="boolean")["generated_text"]
+                pred = self.model.generate_response(item["text"], question, mode="boolean", definition_text=definition)["generated_text"]
                 if pred.lower() == item["decision"].lower():
                     seed_correct += 1
             running_acc = seed_correct / len(training_pool)

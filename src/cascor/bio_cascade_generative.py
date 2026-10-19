@@ -1259,7 +1259,14 @@ class L6DefinitionEntailmentHead(nn.Module):
             min_sat_out = -1.0
             logits = torch.tensor([-3.0, 3.0], device=device)
         else:
-            meets = bool(min_sat.item() >= 0.17)
+            crit_text_combined = " ".join(criteria).lower()
+            all_crit_words = set(w for w in re.findall(r'\b\w+\b', strip_diacritics(crit_text_combined)) if len(w) >= 4 and w not in _COMMON_VERIF_STOPWORDS)
+            term_words = set(w for w in re.findall(r'\b\w+\b', strip_diacritics(term.lower())) if len(w) >= 4 and w not in _COMMON_VERIF_STOPWORDS)
+            all_crit_words = all_crit_words | term_words
+            ctx_word_set = set(re.findall(r'\b\w+\b', c_lower))
+            crit_hits = sum(1 for cw in all_crit_words if any(sw == cw or sw.startswith(cw.rstrip('s')) or cw.startswith(sw.rstrip('s')) for sw in ctx_word_set if len(sw) >= 4))
+            has_domain_crit_match = (crit_hits >= 1) if all_crit_words else True
+            meets = bool(min_sat.item() >= 0.17 and has_domain_crit_match)
             min_sat_out = min_sat.item()
             logits = torch.tensor([3.0, -3.0] if meets else [-3.0, 3.0], device=device) + 0.1 * raw_logits
 
@@ -1959,9 +1966,11 @@ class BioCascadeGenerativeDecoder(nn.Module):
             has_topic_intent = any(p in question_text.lower() for p in [
                 "primary subject of this", "main topic", "mainly about", "primarily focus",
                 "is this article about", "is this text about", "is this news about", "article about",
-                "głównym tematem", "główny temat", "głównie traktuje", "tematem tego", "dotyczy"
+                "does this article describe", "does this article report", "does this news",
+                "describe", "report", "głównym tematem", "główny temat", "głównie traktuje",
+                "tematem tego", "dotyczy", "opisuje"
             ])
-            is_topic_q = float((q_meta_probs[0, 0].item() > 0.45 or has_topic_intent) and (has_topic_intent or "about" in question_text.lower()))
+            is_topic_q = float((q_meta_probs[0, 0].item() > 0.45 or has_topic_intent) and (has_topic_intent or "about" in question_text.lower() or "describe" in question_text.lower() or "report" in question_text.lower()))
             is_bool_q = float(q_meta_probs[0, 1].item() > 0.5)
             has_lex_neg = bool(re.search(
                 r'\b(?:not|no|never|neither|nor|none|without|unable|cannot|can\'t|didn\'t|doesn\'t|wasn\'t|weren\'t|isn\'t|aren\'t|hasn\'t|haven\'t|hadn\'t|won\'t|wouldn\'t|nie|bez|brak|żaden|nigdy|ani)\b',
@@ -3642,10 +3651,12 @@ class BioCascadeGenerativeDecoder(nn.Module):
             is_term_evaluation = bool(term_tokens) and any(tw in q_l for tw in term_tokens) and any(p in q_l for p in [
                 "meet", "satisfy", "qualify", "eligible", "constitute", "violate", "fulfill",
                 "spełnia", "kwalifikuj", "stanowi", "narusza", "zgodn", "accordance",
-                "example of", "przykładem"
+                "example of", "przykładem", "describe", "describes", "about", "report", "reports",
+                "concern", "concerns", "involve", "feature", "dotyczy", "opisuje", "czy"
             ])
+            is_def_target_match = bool(definition_text.strip()) and (is_explicit_def_action or is_term_evaluation or is_criteria_match or bool(term_tokens and any(tw in q_l for tw in term_tokens)))
 
-            if (not is_wh_question) and (is_explicit_def_action or is_term_evaluation or is_criteria_match):
+            if (not is_wh_question) and (is_explicit_def_action or is_term_evaluation or is_criteria_match or is_def_target_match):
                 eval_res = self.l6_definition_entailment_head(
                     model=self,
                     definition_text=definition_text,
@@ -3868,7 +3879,7 @@ class BioCascadeGenerativeDecoder(nn.Module):
                     or (len(missing) >= 1 and any(w in ('fatalities', 'fatal', 'proven', 'guaranteed', 'banned', 'bankrupt', 'cancelled') for w in missing))
                 )
                 asks_confirm_uncertain = is_scope_mention_q and bool(re.search(r'\b(?:unknown|unclear|unconfirmed|uncertain|disputed|not known)\b', context_text.lower()))
-                is_definition_q = bool(re.search(
+                is_definition_q = bool(definition_text.strip()) or bool(re.search(
                     r'\b(?:definition\s+of|satisfy\s+(?:all\s+)?(?:the\s+)?(?:required\s+)?criteria|satisfy\s+(?:all\s+)?criteria|satisfy\s+(?:the\s+)?definition|constitute\s+\w+\s+under\s+the\s+(?:given\s+)?definition|constitute\s+(?:a|an)\s+\w+.*under\s+the\s+definition)\b',
                     q_low
                 ))
@@ -3945,7 +3956,7 @@ class BioCascadeGenerativeDecoder(nn.Module):
                         else:
                             ans_str = ("Yes" if is_eng else "Tak") if (has_dominant_ent or verif_logits[0] >= verif_logits[1]) else ("No" if is_eng else "Nie")
                     elif domain_words:
-                        m_cat = re.search(r'is this article about (.*?)\? answer strictly yes or no', q_low)
+                        m_cat = re.search(r'\b(?:is this article about|is this news about|is this text about|does this article describe|does this article report|czy ten artykuł dotyczy|czy ten news dotyczy|czy dany news dotyczy|czy artykuł opisuje|czy tekst dotyczy)\s+(.*?)(?:\?|answer strictly|$)', q_low)
                         if m_cat:
                             raw_parts = re.split(r',|\bor\b|\bsuch as\b|\bincluding\b', m_cat.group(1))
                             phrases = [p.strip() for p in raw_parts if p.strip()]
@@ -3958,7 +3969,10 @@ class BioCascadeGenerativeDecoder(nn.Module):
                                 'environmental ecology': ['climate', 'pollution', 'ecology', 'wildlife', 'conservation', 'emissions', 'deforest', 'landfill', 'ecosystem', 'habitat', 'greenhouse'],
                                 'electoral voting': ['parliament', 'legislation', 'voting', 'election', 'campaign', 'lawmaker', 'prime minister', 'referendum', 'government', 'president'],
                                 'medical healthcare': ['hospital', 'disease', 'patient', 'doctor', 'surgery', 'surgical', 'pharmaceutical', 'vaccine', 'pathology', 'cancer'],
-                                'financial crime': ['fraud', 'embezzle', 'bribery', 'money laundering', 'ponzi', 'brib'],
+                                'financial crime': ['fraud', 'scam', 'embezzle', 'bribery', 'money laundering', 'ponzi', 'brib', 'stole', 'stolen', 'theft', 'wire transfer', 'rug pull', 'spoof', 'phishing', 'extortion', 'defraud', 'forged', 'forgery', 'fake online', 'cloned investment', 'fictitious', 'unauthorized transfer', 'drained', 'looted', 'misappropriat', 'vanished with', 'cheat', 'swindle', 'oszust', 'wyludn', 'kradziez', 'pranie pieniedzy', 'lapowk', 'sfalszowan'],
+                                'financial fraud': ['fraud', 'scam', 'embezzle', 'bribery', 'money laundering', 'ponzi', 'brib', 'stole', 'stolen', 'theft', 'wire transfer', 'rug pull', 'spoof', 'phishing', 'extortion', 'defraud', 'forged', 'forgery', 'fake online', 'cloned investment', 'fictitious', 'unauthorized transfer', 'drained', 'looted', 'misappropriat', 'vanished with', 'cheat', 'swindle', 'oszust', 'wyludn', 'kradziez', 'pranie pieniedzy', 'lapowk', 'sfalszowan'],
+                                'oszustwo finansowe': ['fraud', 'scam', 'embezzle', 'bribery', 'money laundering', 'ponzi', 'brib', 'stole', 'stolen', 'theft', 'wire transfer', 'rug pull', 'spoof', 'phishing', 'extortion', 'defraud', 'forged', 'forgery', 'fake online', 'cloned investment', 'fictitious', 'unauthorized transfer', 'drained', 'looted', 'misappropriat', 'vanished with', 'cheat', 'swindle', 'oszust', 'wyludn', 'kradziez', 'pranie pieniedzy', 'lapowk', 'sfalszowan'],
+                                'scam': ['fraud', 'scam', 'embezzle', 'bribery', 'money laundering', 'ponzi', 'brib', 'stole', 'stolen', 'theft', 'wire transfer', 'rug pull', 'spoof', 'phishing', 'extortion', 'defraud', 'forged', 'forgery', 'fake online', 'cloned investment', 'fictitious', 'unauthorized transfer', 'drained', 'looted', 'misappropriat', 'vanished with', 'cheat', 'swindle', 'oszust', 'wyludn', 'kradziez', 'pranie pieniedzy', 'lapowk', 'sfalszowan'],
                                 'professional sports': ['champions league', 'premier league', 'tournament', 'olympic', 'athletics', 'football', 'soccer', 'basketball', 'grand prix', 'world cup', 'draw 0-0', 'stade', 'match'],
                                 'bilateral diplomatic': ['talks between', 'high-level talks', 'border talks', 'agreement', 'bilateral talks', 'generals in talks', 'peace treaty', 'ambassadorial negotiations', 'diplomatic talks', 'ceasefire', 'negotiat'],
                                 'natural disasters': ['cyclone', 'earthquake', 'tsunami', 'volcanic eruption', 'hurricane', 'flood', 'wildfire'],
@@ -3968,7 +3982,12 @@ class BioCascadeGenerativeDecoder(nn.Module):
                             for dom_k, exps in dom_expansions.items():
                                 if any(w in q_low for w in dom_k.split()):
                                     for exp_w in exps:
-                                        req_cnt = 2 if exp_w in ('television', 'theatre', 'cinema') else 3
+                                        if exp_w in ('rug pull', 'wire transfer', 'cloned investment', 'fake online', 'vanished with', 'unauthorized transfer', 'money laundering', 'ponzi', 'phishing', 'embezzle', 'bribery', 'extortion', 'pranie pieniedzy', 'wyludn', 'kradziez', 'sfalszowan'):
+                                            req_cnt = 1
+                                        elif exp_w in ('television', 'theatre', 'cinema', 'fraud', 'scam', 'stolen', 'theft', 'cheat', 'swindle', 'defraud'):
+                                            req_cnt = 1 if exp_w in title_lead else 2
+                                        else:
+                                            req_cnt = 3
                                         if exp_w in title_lead or (ctx_low.count(exp_w) >= req_cnt and exp_w not in ('war', 'train')):
                                             is_domain_hit = True
                                             break
@@ -4568,6 +4587,8 @@ class BioCascadeGenerativeDecoder(nn.Module):
         if best_state is not None:
             self.l6_verification_head.load_state_dict(best_state)
 
+        self.is_question_adapted = True
+        self.adapted_question = question.strip()
         self.eval()
 
         # 5. Optional checkpoint persistence
