@@ -125,22 +125,57 @@ def test_active_learning_with_mock_assistant_and_rollback():
     assert telemetry["spot_agreement_rate_pct"] >= 50.0
 
 
+def test_dataframe_with_single_definition_in_settings():
+    """Verify that a single definition in .settings(definition=...) applies across DataFrame rows."""
+    flea = DecisionFlea()
+    
+    custom_def = "Autonomous Drone - Unmanned aerial vehicle operating without human manual remote control or teleoperation."
+    q = "Does this system satisfy the definition of Autonomous Drone?"
+    
+    df_eval = pd.DataFrame({
+        "story": [
+            "The surveillance aircraft navigated through turbulent mountain winds relying entirely on onboard visual odometry with no ground pilot link.",
+            "The hobby quadcopter was piloted manually by an operator using a dual-joystick radio transmitter from a lawn chair."
+        ]
+    })
+    
+    flea.settings(
+        definition=custom_def,
+        question=q,
+        dataframe=df_eval,
+        text_column="story",
+        decision_column="is_autonomous",
+        verbose=False,
+    )
+    
+    annotated_df, telemetry = flea.run()
+    
+    assert "is_autonomous" in annotated_df.columns
+    assert annotated_df.iloc[0]["is_autonomous"] == "Yes"
+    assert annotated_df.iloc[1]["is_autonomous"] == "No"
+    assert telemetry["total_rows"] == 2
+
+
 if __name__ == "__main__":
     print("=" * 70)
     print("  🧪 TESTING DECISION-FLEA PIPELINE & ACTIVE LEARNING LOOP")
     print("=" * 70)
 
-    print("\n[1/3] Testing single text inference...")
+    print("\n[1/4] Testing single text inference...")
     test_single_text_inference()
     print("   ✅ PASS: Single text inference works.")
 
-    print("\n[2/3] Testing DataFrame batch processing with tuning batch...")
+    print("\n[2/4] Testing DataFrame batch processing with tuning batch...")
     test_dataframe_with_tuning_batch()
     print("   ✅ PASS: DataFrame batch processing works.")
 
-    print("\n[3/3] Testing Active Learning with Mock Assistant & Rollback...")
+    print("\n[3/4] Testing Active Learning with Mock Assistant & Rollback...")
     test_active_learning_with_mock_assistant_and_rollback()
     print("   ✅ PASS: Active Learning & Rollback Drift Recovery works.")
+
+    print("\n[4/4] Testing DataFrame with single definition in .settings()...")
+    test_dataframe_with_single_definition_in_settings()
+    print("   ✅ PASS: Single definition across DataFrame rows works.")
 
     print("\n" + "=" * 70)
     print("  🎉 ALL DECISION-FLEA PIPELINE TESTS PASSED!")

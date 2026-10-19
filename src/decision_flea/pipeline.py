@@ -111,14 +111,17 @@ class DecisionFlea:
 
     def _run_single_text(self, text: str, question: str) -> Dict[str, Any]:
         """Perform zero-hallucination verification on a single text."""
-        res = self.model.generate_response(text, question, mode="boolean")
+        def_text = self.cfg.definition or ""
+        res = self.model.generate_response(text, question, mode="boolean", definition_text=def_text)
         return {
             "question": question,
+            "definition": def_text,
             "text": text,
             "decision": res["generated_text"],
             "confidence": res["confidence"],
             "probabilities": res["probabilities"],
-            "verif_logits": res["verif_logits"],
+            "verif_logits": res.get("verif_logits"),
+            "definition_entailment": res.get("definition_entailment"),
         }
 
     def _run_dataframe_pipeline(self) -> Tuple[Any, Dict[str, Any]]:
@@ -127,6 +130,7 @@ class DecisionFlea:
         text_col = self.cfg.text_column
         dec_col = self.cfg.decision_column
         conf_col = self.cfg.confidence_column
+        definition = self.cfg.definition or ""
         question = self.cfg.question
 
         if text_col not in df.columns:
@@ -156,7 +160,8 @@ class DecisionFlea:
             # Query assistant for seed labels
             for idx in range(bootstrap_size):
                 row_text = str(df.iloc[idx][text_col])
-                ast_res = assistant.classify(row_text, question)
+                ast_q = f"Definition: {definition}\nQuestion: {question}" if definition else question
+                ast_res = assistant.classify(row_text, ast_q)
                 api_calls += 1
                 training_pool.append({"text": row_text, "decision": ast_res["decision"]})
 
@@ -204,7 +209,7 @@ class DecisionFlea:
             row_text = str(df.iloc[idx][text_col])
 
             # 1. Ultra-fast SLM CPU inference
-            res = self.model.generate_response(row_text, question, mode="boolean")
+            res = self.model.generate_response(row_text, question, mode="boolean", definition_text=definition)
             slm_inferences += 1
             slm_dec = res["generated_text"]
             slm_conf = res["confidence"]
@@ -221,7 +226,8 @@ class DecisionFlea:
             if is_check and assistant is not None:
                 spot_checks += 1
                 spot_checked[idx] = True
-                ast_res = assistant.classify(row_text, question)
+                ast_q = f"Definition: {definition}\nQuestion: {question}" if definition else question
+                ast_res = assistant.classify(row_text, ast_q)
                 api_calls += 1
                 ast_dec = ast_res["decision"]
                 assistant_decisions[idx] = ast_dec
@@ -260,7 +266,7 @@ class DecisionFlea:
 
                     for r_idx in range(rollback_start, idx + 1):
                         r_text = str(df.iloc[r_idx][text_col])
-                        r_res = self.model.generate_response(r_text, question, mode="boolean")
+                        r_res = self.model.generate_response(r_text, question, mode="boolean", definition_text=definition)
                         decisions[r_idx] = r_res["generated_text"]
                         confidences[r_idx] = r_res["confidence"]
                         slm_inferences += 1

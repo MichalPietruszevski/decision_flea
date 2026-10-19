@@ -17,8 +17,9 @@ class DecisionFleaSettings:
         - Active learning (bootstrap & spot-check drift recovery)
     """
 
-    # 1. Target Query / Question
+    # 1. Target Query / Question & Optional Definition
     question: str = ""
+    definition: Optional[str] = None
 
     # 2. Input Data
     text: Optional[str] = None
