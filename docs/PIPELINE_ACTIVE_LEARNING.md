@@ -1,12 +1,12 @@
-# Bio-Cascade SLM: Unified Library Pipeline & Active Learning
+# Decision-Flea SLM: Unified Library Pipeline & Active Learning
 
-Bio-Cascade SLM v15.1 provides a clean, top-level library interface (`import bio_cascade`) designed to bridge fast local CPU inference with cloud LLMs (such as OpenAI GPT-4o, Azure OpenAI, vLLM, or Ollama) using an autonomous **Teacher-Student Active Learning Loop**.
+Decision-Flea SLM v15.1 provides a clean, top-level library interface (`import decision_flea`) designed to bridge fast local CPU inference with cloud LLMs (such as OpenAI GPT-4o, Azure OpenAI, vLLM, or Ollama) using an autonomous **Teacher-Student Active Learning Loop**.
 
 ---
 
 ## 🌟 Highlights
 
-- **`import bio_cascade`**: Standard Python package interface.
+- **`import decision_flea`**: Standard Python package interface.
 - **Fluent `.settings(...)` Configuration**: Configure target questions, single texts, Pandas DataFrames, column names, seed batches, and assistant teachers in one method call.
 - **Teacher-Student Bootstrap**: Calibrates the SLM against the assistant on an initial seed batch in ~2 seconds.
 - **High-Speed Processing**: Processes remaining rows at **15–25 ms per row on CPU** (no GPU required).
@@ -23,11 +23,11 @@ Bio-Cascade SLM v15.1 provides a clean, top-level library interface (`import bio
 ### 1. Single Text Verification
 
 ```python
-import bio_cascade
+import decision_flea
 
-pipeline = bio_cascade.BioCascade()
+flea = decision_flea.DecisionFlea()
 
-result = pipeline.settings(
+result = flea.settings(
     text="Aether Dynamics announced record quarterly revenues reaching 42.85 million euros.",
     question="Did Aether Dynamics announce record quarterly revenues?",
 ).run()
@@ -42,13 +42,13 @@ print(result["confidence"])   # 1.0 (100.0%)
 
 ```python
 import pandas as pd
-import bio_cascade
+import decision_flea
 
 df = pd.read_csv("unlabeled_news.csv")
 
-pipeline = bio_cascade.BioCascade()
+flea = decision_flea.DecisionFlea()
 
-annotated_df, telemetry = pipeline.settings(
+annotated_df, telemetry = flea.settings(
     question="Did someone use AI or deepfakes to steal money or commit fraud in this story?",
     dataframe=df,
     text_column="news_body",
@@ -72,15 +72,15 @@ print(annotated_df[["id", "is_ai_fraud", "fraud_confidence"]])
 ```python
 import pandas as pd
 import openai
-import bio_cascade
+import decision_flea
 
 # 1. Initialize OpenAI Client (or use MockOpenAIAssistant for offline tests)
 client = openai.OpenAI(api_key="your-api-key")
 
 # 2. Configure Pipeline
-pipeline = bio_cascade.BioCascade()
+flea = decision_flea.DecisionFlea()
 
-annotated_df, telemetry = pipeline.settings(
+annotated_df, telemetry = flea.settings(
     question="Did someone use AI or deepfakes to steal money or commit fraud in this story?",
     dataframe=df,
     text_column="article_text",

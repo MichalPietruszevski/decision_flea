@@ -1,6 +1,6 @@
-"""Bio-Cascade Generative SLM V15.1 - Quickstart Verification Script.
+"""Decision-Flea Generative SLM V15.1 - Quickstart Verification Script.
 
-Autor: Zespół Bio-Cascade & Antigravity AI
+Autor: Zespół Decision-Flea & Antigravity AI
 Wersja: V15.1 (100.00% Recall Milestone, 98.75% Combined Accuracy, 9 Audit Gates)
 
 Uruchomienie:
@@ -31,7 +31,7 @@ except ImportError as e:
     sys.exit(1)
 
 print("=" * 80)
-print("  🚀 BIO-CASCADE SLM V15.1: SZYBKI TEST WERYFIKACYJNY (QUICKSTART)")
+print("  🚀 DECISION-FLEA SLM V15.1: SZYBKI TEST WERYFIKACYJNY (QUICKSTART)")
 print("     [100% RECALL MILESTONE | 98.75% ACCURACY | 9 AUDIT GATES PASS]")
 print("=" * 80)
 

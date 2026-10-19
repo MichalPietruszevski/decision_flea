@@ -3,19 +3,21 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bio-cascade-slm"
+name = "decision-flea"
 version = "15.1.0"
-description = "Deterministic, Grounded Cascade-Correlation Small Language Model (SLM) with 100% Recall"
+description = "Decision-Flea: Fast, Deterministic Small Language Model (SLM) with Active Learning & In-Place Calibration"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
 authors = [
-    { name = "Bio-Cascade SLM Contributors" }
+    { name = "Decision-Flea Contributors" }
 ]
 keywords = [
+    "decision-flea",
     "small-language-model",
-    "cascade-correlation",
     "slm",
+    "active-learning",
+    "cascade-correlation",
     "grounded-ai",
     "hallucination-prevention",
     "fourier-wave-memory",
@@ -51,10 +53,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/bio-cascade/bio-cascade-slm"
-Documentation = "https://github.com/bio-cascade/bio-cascade-slm#readme"
-Repository = "https://github.com/bio-cascade/bio-cascade-slm.git"
-Issues = "https://github.com/bio-cascade/bio-cascade-slm/issues"
+Homepage = "https://github.com/decision-flea/decision-flea"
+Documentation = "https://github.com/decision-flea/decision-flea#readme"
+Repository = "https://github.com/decision-flea/decision-flea.git"
+Issues = "https://github.com/decision-flea/decision-flea/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

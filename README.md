@@ -1,4 +1,4 @@
-# Bio-Cascade SLM (V15.1 Production Release)
+# Decision-Flea SLM (V15.1 Production Release)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Recall-100.00%25%20(FN%3D0)-brightgreen.svg?style=for-the-badge&logo=target" alt="100% Recall">
@@ -13,11 +13,11 @@
 
 ## 📖 Overview
 
-**Bio-Cascade SLM** is a deterministic, context-grounded **Small Language Model (SLM)** engineered for zero-hallucination fact verification, information extraction, and question answering. 
+**Decision-Flea SLM** is a deterministic, context-grounded **Small Language Model (SLM)** engineered for zero-hallucination fact verification, information extraction, question answering, and autonomous active learning.
 
-Unlike conventional decoder-only LLMs that require billions of parameters and suffer from stochastic hallucinations, Bio-Cascade utilizes a mathematically principled **Cascade-Correlation (CasCor)** hierarchy (L0–L6) with **Net2DeeperNet** dynamic depth expansion and **Fourier Spectral Wave Memory**.
+Unlike conventional decoder-only LLMs that require billions of parameters and suffer from stochastic hallucinations, Decision-Flea utilizes a mathematically principled **Cascade-Correlation (CasCor)** hierarchy (L0–L6) with **Net2DeeperNet** dynamic depth expansion and **Fourier Spectral Wave Memory**.
 
-At just **16.25 million parameters** (~65 MB disk footprint), Bio-Cascade runs natively on consumer CPUs in **15–25 ms**, achieving **100.00% Recall ($FN = 0$)** on adversarial multi-corpus benchmarks.
+At just **16.25 million parameters** (~65 MB disk footprint), Decision-Flea runs natively on consumer CPUs in **15–25 ms**, achieving **100.00% Recall ($FN = 0$)** on adversarial multi-corpus benchmarks.
 
 ---
 
@@ -75,8 +75,8 @@ For full mathematical equations and layer specifications, see [docs/ARCHITECTURE
 
 ```bash
 # Clone repository with Git LFS (for model weights)
-git clone https://github.com/your-username/bio-cascade-slm.git
-cd bio-cascade-slm
+git clone https://github.com/decision-flea/decision-flea.git
+cd decision-flea
 git lfs pull
 
 # Install dependencies
@@ -89,17 +89,17 @@ pip install -r requirements.txt
 python QUICKSTART.py
 ```
 
-### 3. Python Library API Usage (`import bio_cascade`)
+### 3. Python Library API Usage (`import decision_flea`)
 
 ```python
-import bio_cascade
+import decision_flea
 import pandas as pd
 
 # 1. Initialize High-Level Pipeline
-pipeline = bio_cascade.BioCascade()
+flea = decision_flea.DecisionFlea()
 
 # 2. Single Text Verification
-res = pipeline.settings(
+res = flea.settings(
     text="Aether Dynamics announced record quarterly revenues reaching 42.85 million euros.",
     question="Did Aether Dynamics announce record quarterly revenues?",
 ).run()
@@ -114,7 +114,7 @@ df = pd.DataFrame([
     {"article": "Mastercard AI system blocked $20B in attempted fraud."}
 ])
 
-annotated_df, telemetry = pipeline.settings(
+annotated_df, telemetry = flea.settings(
     question="Did someone use AI or deepfakes to steal money or commit fraud in this story?",
     dataframe=df,
     text_column="article",
@@ -213,7 +213,7 @@ bio-cascade-slm/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml                          # GitHub Actions CI workflow (Linux/Windows)
-├── bio_cascade/                            # Root importable package (`import bio_cascade`)
+├── decision_flea/                          # Root importable package (`import decision_flea`)
 │   └── __init__.py                         # High-level pipeline entrypoint
 ├── docs/
 │   ├── ARCHITECTURE_V15_1.md               # Complete mathematical & layer specification
@@ -238,11 +238,11 @@ bio-cascade-slm/
 │   ├── generate_confidence_chart.py        # Generates interactive HTML confidence chart
 │   └── train_multicorpus_verifier.py       # Multi-corpus training harness
 ├── src/
-│   ├── bio_cascade/                        # High-level pipeline & assistant modules
+│   ├── decision_flea/                      # High-level pipeline & assistant modules
 │   │   ├── __init__.py
 │   │   ├── assistant.py                    # OpenAI Standard Bridge & Offline Mock
-│   │   ├── pipeline.py                     # BioCascade pipeline & active learning engine
-│   │   └── settings.py                     # BioCascadeSettings dataclass
+│   │   ├── pipeline.py                     # DecisionFlea pipeline & active learning engine
+│   │   └── settings.py                     # DecisionFleaSettings dataclass
 │   └── cascor/                             # Core CasCor SLM neural architecture
 │       ├── __init__.py
 │       ├── audit_guard.py                  # Master CI/CD audit runner (9 gates)
@@ -250,7 +250,7 @@ bio-cascade-slm/
 ├── tests/
 │   ├── run_blind_test.py                   # Out-of-distribution blind test
 │   ├── test_auto_routing.py                # Automatic question routing test
-│   ├── test_bio_cascade_pipeline.py        # Active learning, settings & rollback tests
+│   ├── test_decision_flea_pipeline.py      # Active learning, settings & rollback tests
 │   ├── test_comprehensive_qa.py            # Comprehensive QA evaluation suite
 │   └── test_poland_history_50.py           # 50 Polish historical QA tests
 ├── .gitattributes                          # Git LFS & line ending normalization
@@ -276,7 +276,7 @@ python run_all_tests.py
 
 Run individual unit tests:
 ```bash
-pytest tests/
+python -m unittest tests/test_decision_flea_pipeline.py
 ```
 
 ---
@@ -285,14 +285,14 @@ pytest tests/
 
 Distributed under the **Apache License 2.0**. See [`LICENSE`](LICENSE) for details.
 
-If you use Bio-Cascade SLM in your research or applications, please cite:
+If you use Decision-Flea in your research or applications, please cite:
 
 ```bibtex
-@software{bio_cascade_slm_2026,
-  author = {Bio-Cascade SLM Contributors},
-  title = {Bio-Cascade SLM: Grounded Cascade-Correlation Small Language Model with 100% Recall},
+@software{decision_flea_2026,
+  author = {Decision-Flea Contributors},
+  title = {Decision-Flea: Fast Grounded Small Language Model with Active Learning},
   year = {2026},
   version = {15.1.0},
-  url = {https://github.com/bio-cascade/bio-cascade-slm}
+  url = {https://github.com/decision-flea/decision-flea}
 }
 ```

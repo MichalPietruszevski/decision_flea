@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 TESTS = [
     ("src/cascor/audit_guard.py", "Automated Audit Guard (9 bramek architektonicznych)"),
-    ("tests/test_bio_cascade_pipeline.py", "BioCascade Pipeline, Settings & Active Learning"),
+    ("tests/test_decision_flea_pipeline.py", "Decision-Flea Pipeline, Settings & Active Learning"),
     ("tests/test_kogucik_experiment_en.py", "Kogucik Salience & Entity Attribution"),
     ("tests/run_blind_test.py", "Blind Torture Test (Odmowy & Antyhalucynacja)"),
     ("tests/test_poland_history_50.py", "Polish Historical Knowledge & Refusal (50 Qs)"),
@@ -31,7 +31,7 @@ TESTS = [
 ]
 
 print("=" * 80)
-print("  🚀 BIO-CASCADE SLM V15.1: MASTER TEST RUNNER & AUDIT SUITE")
+print("  🚀 DECISION-FLEA SLM V15.1: MASTER TEST RUNNER & AUDIT SUITE")
 print("=" * 80)
 
 env = os.environ.copy()

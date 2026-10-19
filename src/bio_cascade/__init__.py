@@ -1,22 +1,25 @@
-"""Bio-Cascade SLM: Grounded Cascade-Correlation Small Language Model.
+"""Bio-Cascade SLM compatibility forwarder to decision_flea."""
 
-Public API:
-    - BioCascade: Unified client and pipeline interface.
-    - BioCascadePipeline: Alias for BioCascade.
-    - BioCascadeSettings: Configuration container.
-    - OpenAIAssistantBridge: Bridge to OpenAI-standard models (gpt-4o, vLLM, Ollama).
-    - MockOpenAIAssistant: Offline simulation assistant for testing without API keys.
-"""
+from src.decision_flea import (
+    DecisionFlea,
+    DecisionFleaPipeline,
+    DecisionFleaSettings,
+    BioCascade,
+    BioCascadePipeline,
+    BioCascadeSettings,
+    OpenAIAssistantBridge,
+    MockOpenAIAssistant,
+    __version__,
+)
 
-from src.bio_cascade.pipeline import BioCascade, BioCascadePipeline
-from src.bio_cascade.settings import BioCascadeSettings
-from src.bio_cascade.assistant import OpenAIAssistantBridge, MockOpenAIAssistant
-
-__version__ = "15.1.0"
 __all__ = [
+    "DecisionFlea",
+    "DecisionFleaPipeline",
+    "DecisionFleaSettings",
     "BioCascade",
     "BioCascadePipeline",
     "BioCascadeSettings",
     "OpenAIAssistantBridge",
     "MockOpenAIAssistant",
+    "__version__",
 ]

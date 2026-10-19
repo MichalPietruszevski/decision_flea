@@ -30,11 +30,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 sys.path.insert(0, str(BASE_DIR / "src"))
 
-import bio_cascade
-from bio_cascade import BioCascade, MockOpenAIAssistant, OpenAIAssistantBridge
+import decision_flea
+from decision_flea import DecisionFlea, MockOpenAIAssistant, OpenAIAssistantBridge
 
 print("=" * 80)
-print("  🚀 BIO-CASCADE SLM: AUTONOMOUS ACTIVE LEARNING & ASSISTANT PIPELINE")
+print("  🚀 DECISION-FLEA SLM: AUTONOMOUS ACTIVE LEARNING & ASSISTANT PIPELINE")
 print("=" * 80)
 
 # 1. Przykładowa tabela newsów (Pandas DataFrame)
@@ -69,9 +69,9 @@ target_question = "Did someone use AI or deepfakes to steal money or commit frau
 assistant = MockOpenAIAssistant()
 
 print(f"\n[1] Pytanie docelowe klienta:\n    \"{target_question}\"")
-print("[2] Inicjalizacja klienta BioCascade...")
+print("[2] Inicjalizacja klienta DecisionFlea...")
 
-pipeline = BioCascade()
+pipeline = DecisionFlea()
 
 # 4. Konfiguracja parametrów przez metodę .settings(...)
 pipeline.settings(
